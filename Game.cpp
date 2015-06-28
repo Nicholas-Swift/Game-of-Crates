@@ -27,6 +27,9 @@ Game::Game()
 	m_menu.setPlayer(m_player);
 	m_menu.Populate(0);
 	m_menu.Resize();
+
+	//m_startScreen;
+	m_startScreen.setPosition(m_window);
 }
 
 void Game::run()
@@ -60,27 +63,39 @@ void Game::processEvents()
 		switch(Event.type)
 		{
 		case sf::Event::KeyPressed:
-			if(!m_menu.getMenuUp()) //if menu not up
-				m_player.HandleEvents(Event.key.code, true);
+			if(m_startScreen.getDestroyed())
+			{
+				if(!m_menu.getMenuUp()) //if menu not up
+					m_player.HandleEvents(Event.key.code, true);
 
-			if(Event.key.code == sf::Keyboard::Key::Escape)
-				m_menu.pressedEscape();
+				if(Event.key.code == sf::Keyboard::Key::Escape)
+					m_menu.pressedEscape();
+			}
 
 			break;
 
 		case sf::Event::KeyReleased:
-			if(!m_menu.getMenuUp()) //if menu not up
-				m_player.HandleEvents(Event.key.code, false);
+			if(m_startScreen.getDestroyed())
+			{
+				if(!m_menu.getMenuUp()) //if menu not up
+					m_player.HandleEvents(Event.key.code, false);
+			}
 			break;
 
 		case sf::Event::MouseButtonPressed:
-			if(m_menu.getMenuUp())
-				m_menu.DragSet();
+			if(m_startScreen.getDestroyed())
+			{
+				if(m_menu.getMenuUp())
+					m_menu.DragSet();
+			}
 			break;
 
 		case sf::Event::MouseButtonReleased:
-			if(m_menu.getMenuUp())
-				m_menu.Click();
+			if(m_startScreen.getDestroyed())
+			{
+				if(m_menu.getMenuUp())
+					m_menu.Click();
+			}
 			break;
 
 		case sf::Event::Resized:
@@ -97,43 +112,57 @@ void Game::processEvents()
 
 void Game::update(sf::Time deltaTime)
 {
-	if(!m_menu.getMenuUp())
+	if(m_startScreen.getDestroyed())
 	{
-		//update the game!
-		m_tilemap.Update(deltaTime);
+		if(!m_menu.getMenuUp())
+		{
+			//update the game!
+			m_tilemap.Update(deltaTime);
 
-		m_player.Update(m_tilemap);
-		m_player.Move(deltaTime, m_tilemap);
-		m_player.Animate(deltaTime);
-		m_player.Sound(deltaTime);
+			m_player.Update(m_tilemap);
+			m_player.Move(deltaTime, m_tilemap);
+			m_player.Animate(deltaTime);
+			m_player.Sound(deltaTime);
+		}
+		else
+		{
+			m_menu.Update(m_backgroundProcesses);
+		}
+
+		//update background processes, so clouds always move!
+		m_backgroundProcesses.Update(deltaTime, m_window);
+
+		//Game update view
+		m_view.setCenter( (m_player.getLeft() + m_player.getRight()) / 2, m_player.getBottom() );
+		m_view.setSize(m_window.getSize().x, m_window.getSize().y);
+		m_window.setView(m_view);
+
+		//update view
+		m_backgroundProcesses.ViewUpdate(m_window);
 	}
-	else
+	else if(!m_startScreen.getDestroyed())
 	{
-		m_menu.Update(m_backgroundProcesses);
+		m_startScreen.Update(deltaTime);
 	}
-
-	//update background processes, so clouds always move!
-	m_backgroundProcesses.Update(deltaTime, m_window);
-
-	//Game update view
-	m_view.setCenter( (m_player.getLeft() + m_player.getRight()) / 2, m_player.getBottom() );
-	m_view.setSize(m_window.getSize().x, m_window.getSize().y);
-	m_window.setView(m_view);
-
-	//update view
-	m_backgroundProcesses.ViewUpdate(m_window);
 }
 
 void Game::render()
 {
 	m_window.clear();
 
-	m_backgroundProcesses.Draw(m_window);
-	m_tilemap.Draw(m_window);
-	m_player.Draw(m_window);
+	if(m_startScreen.getDestroyed())
+	{
+		m_backgroundProcesses.Draw(m_window);
+		m_tilemap.Draw(m_window);
+		m_player.Draw(m_window);
 
-	if(m_menu.getMenuUp())
-		m_menu.Draw();
+		if(m_menu.getMenuUp())
+			m_menu.Draw();
+	}
+	else
+	{
+		m_startScreen.Draw(m_window);
+	}
 
 	m_window.display();
 }
