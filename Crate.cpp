@@ -65,6 +65,7 @@ sf::Vector2f Crate::getMovement()
 
 void Crate::CrateCollide(float top, float bottom, float left, float right)
 {
+	
 	m_onCrate = false;
 
 	if(m_top == top && m_bottom == bottom && m_left == left && m_right == right) //same crate
@@ -109,6 +110,10 @@ Crate::Crate()
 
 void Crate::Update(sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p)
 {
+	//don't update if you're out of scope!
+	/*if(m_bottom < m_window.getView().getCenter().y - m_window.getSize().y/2 || m_left <)*/
+
+
 	m_top = m_rect.getPosition().y;
 	m_bottom = m_rect.getPosition().y + m_rect.getSize().y;
 	m_left = m_rect.getPosition().x;
@@ -152,6 +157,9 @@ void Crate::Update(sf::Time &deltaTime, int map[50][50], std::vector<Platform> &
 	{
 		//not touching
 		if(m_right < p[i].getLeft() || m_left > p[i].getRight() || m_top > p[i].getBottom() || m_bottom < p[i].getTop())
+		{}
+
+		else if(m_bottom - 2 > p[i].getTop())
 		{}
 
 		else if(m_left > p[i].getLeft() && m_right < p[i].getRight())

@@ -64,18 +64,27 @@ void Menu::setPlayer(Player &player)
 	m_player = &player;
 }
 
+void Menu::setSoundLevel(int i)
+{
+	if(i <= 0)
+		m_sound.setVolume(0);
+	else
+		m_sound.setVolume(i/1.2);
+}
+
 void Menu::PopulateZero() //Main Menu
 {
 	//clear everything first
 	m_buttonsRect.clear();
 	m_buttonsSprite.clear();
 
-	m_title.setTextureRect(sf::IntRect(0, 0, 0, 0));
+	//title
+	m_title.setTextureRect(sf::IntRect(0, 192, 500, 200));
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 10);
 
 	m_state = 0; //set state
 
 	//title and tilemap
-	m_title.setTextureRect(sf::IntRect(0, 0, 0, 0));
 	m_tilemap->setMap(-1);
 	m_player->setPosition(sf::Vector2f(0, 0));
 
@@ -135,6 +144,12 @@ void Menu::PopulateZero() //Main Menu
 		sprite->setPosition(rect->getPosition());
 		m_buttonsSprite.push_back(*sprite);
 	}
+
+	//set up selector
+	m_selector.setSize(m_buttonsRect[0].getSize());
+	m_selector.setFillColor(sf::Color::Transparent);
+	m_selector.setOutlineThickness(-2);
+	m_selector.setOutlineColor(sf::Color::Yellow);
 }
 
 void Menu::UpdateZero()
@@ -252,6 +267,10 @@ void Menu::UpdateZero()
 				m_buttonsSprite[i].setTextureRect(sf::IntRect(181, (i-(m_buttonsSprite.size()-3))*64, 181, 64));
 		}
 	}
+
+	//update selector
+	if(m_selector.getPosition() != m_buttonsSprite[m_mapLevel].getPosition())
+		m_selector.setPosition(m_buttonsSprite[m_mapLevel].getPosition());
 }
 
 void Menu::ClickZero()
@@ -262,6 +281,8 @@ void Menu::ClickZero()
 			{}
 		else
 		{
+			m_sound.play();
+
 			if(i >= 0 && i < m_buttonsRect.size() - 3)
 			{
 				//make level i selected
@@ -378,6 +399,8 @@ void Menu::ClickOne()
 			{}
 		else
 		{
+			m_sound.play();
+
 			if(i == 0) //return to playing
 			{
 				m_menuUp = false;
@@ -410,7 +433,9 @@ void Menu::PopulateTwo()
 	m_state = 2; //set state
 
 	//title
-	m_title.setTextureRect(sf::IntRect(0, 0, 0, 0));
+	//title
+	m_title.setTextureRect(sf::IntRect(0, 96, 350, 96));
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50);
 
 	//set up labels
 	for(int i = 0; i < 4; i++)
@@ -528,6 +553,8 @@ void Menu::ClickTwo()
 			{}
 		else
 		{
+			m_sound.play();
+
 			if(i == 3) //back button
 				Populate(m_prevState);
 		}
@@ -536,7 +563,7 @@ void Menu::ClickTwo()
 
 void Menu::ResizeZero(sf::Vector2f size)
 {
-	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50); //set position
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 10); //set position
 	m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);
 
 	//Set levels and stuff
@@ -570,7 +597,7 @@ void Menu::ResizeZero(sf::Vector2f size)
 
 void Menu::ResizeZero()
 {
-	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50); //set position
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 10); //set position
 
 	//set levels and stuff
 	for(int i = 0; i < m_buttonsRect.size() - 3; i++)
@@ -733,13 +760,16 @@ Menu::Menu()
 
 	Load();
 
-	m_titleTexture.loadFromFile("titleTexture.png");
+	m_titleTexture.loadFromFile("Assets/titleTexture.png");
 	m_buttonTexture.loadFromFile("Assets/buttonTexture.png");
 
 	m_title.setTexture(m_titleTexture);
 
 	m_dragging = false;
 	m_dragNum = -1;
+
+	m_clickNoise.loadFromFile("Assets/menuClick.wav");
+	m_sound.setBuffer(m_clickNoise);
 }
 
 void Menu::Populate(int i)
@@ -754,6 +784,9 @@ void Menu::Populate(int i)
 
 void Menu::Update(BackgroundProcesses &b)
 {
+	if(m_tilemap->getLevel() >= m_maxLevel)
+		m_maxLevel = m_tilemap->getLevel();
+
 	if(!m_menuUp)
 	{}
 	else if(m_state == 0)
@@ -779,6 +812,7 @@ void Menu::setOptions(BackgroundProcesses &b)
 	m_player->setSoundLevel(m_soundLevel);
 	b.setMusicVolume(m_musicLevel);
 	b.setSoundEffectsVolume(m_soundLevel);
+	setSoundLevel(m_soundLevel);
 }
 
 void Menu::DragSet()
@@ -870,11 +904,14 @@ void Menu::Draw()
 {
 	m_window->draw(m_title);
 	
-	for(int i = 0; i < m_buttonsRect.size(); i++)
-		m_window->draw(m_buttonsRect[i]);
+	/*for(int i = 0; i < m_buttonsRect.size(); i++)
+		m_window->draw(m_buttonsRect[i]);*/
 
 	for(int i = 0; i < m_buttonsSprite.size(); i++)
 		m_window->draw(m_buttonsSprite[i]);
+
+	if(m_state == 0)
+		m_window->draw(m_selector);
 }
 
 void Menu::Resize(sf::Vector2f size)

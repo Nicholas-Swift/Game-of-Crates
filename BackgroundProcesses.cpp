@@ -12,7 +12,7 @@ void BackgroundProcesses::setMusicVolume(int i)
 	if(i <= 0)
 		m_musicBackground.setVolume(0);
 	else
-		m_musicBackground.setVolume(i);
+		m_musicBackground.setVolume(i*1.5);
 }
 
 void BackgroundProcesses::setSoundEffectsVolume(int i)

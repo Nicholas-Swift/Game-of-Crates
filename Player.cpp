@@ -29,7 +29,7 @@ void Player::setSoundLevel(int i)
 	if(i <= 0)
 		m_walking.setVolume(0);
 	else
-		m_walking.setVolume(i);
+		m_walking.setVolume(i*1.3);
 }
 
 void Player::setPosition(sf::Vector2f pos)
@@ -107,6 +107,20 @@ void Player::Update(Tilemap &t)
 	m_left = m_rect.getPosition().x;
 	m_right = m_rect.getPosition().x + m_rect.getSize().x;
 
+	//collision with portal
+	if(t.getLevelMap(m_bottom/64, m_left/64) == 999 || t.getLevelMap(m_bottom/64, m_right/64) == 999 || t.getLevelMap(m_top/64, m_left/64) == 999 || t.getLevelMap(m_top/64, m_right/64) == 999)
+	{
+		setPosition(sf::Vector2f(0, 0));
+		t.setMap();
+	}
+
+	//respawning when falling through the bottom of the map!!
+	if(m_bottom >= 30*64)
+	{
+		std::cout<<"SPAWNED"<<std::endl;
+		setPosition(sf::Vector2f(0, 0));
+	}
+
 	//downward collision on tilemap
 	if(m_bottom / 64 < 0 || m_right < 0)
 		m_onGround = false;
@@ -157,13 +171,15 @@ void Player::Update(Tilemap &t)
 			//pushing crate right
 			else if(m_right >= t.getCrateLeft(i) && m_left < t.getCrateLeft(i))
 			{
-				t.setCratePos(i, sf::Vector2f(m_right, t.getCrateTop(i)));
+				if(m_movement.x > 0)
+					t.setCratePos(i, sf::Vector2f(m_right, t.getCrateTop(i)));
 			}
 
 			//pushing crate left
 			else if(m_left <= t.getCrateRight(i) && m_left > t.getCrateLeft(i))
 			{
-				t.setCratePos(i, sf::Vector2f(m_left - (t.getCrateRight(i) - t.getCrateLeft(i)), t.getCrateTop(i)));
+				if(m_movement.x < 0)
+					t.setCratePos(i, sf::Vector2f(m_left - (t.getCrateRight(i) - t.getCrateLeft(i)), t.getCrateTop(i)));
 			}
 		}
 	}
@@ -258,6 +274,8 @@ void Player::Move(sf::Time &deltaTime, Tilemap &t)
 		//not touching
 		if(m_right < t.getPlatformLeft(i) || m_left > t.getPlatformRight(i) || m_top > t.getPlatformBottom(i) || m_bottom < t.getPlatformTop(i))
 		{}
+		else if(m_bottom - 2 > t.getPlatformTop(i))
+		{}
 		else if(m_left > t.getPlatformLeft(i) && m_right < t.getPlatformRight(i))
 			m_movement.x += t.getPlatformMovement(i).x;
 		else if( m_left < t.getPlatformLeft(i) && (m_left + m_right)/2 > t.getPlatformLeft(i) && int(m_movement.x) == 0)
@@ -283,6 +301,8 @@ void Player::Move(sf::Time &deltaTime, Tilemap &t)
 	{
 		//not touching
 		if(m_right < t.getPlatformLeft(i) || m_left > t.getPlatformRight(i) || m_top > t.getPlatformBottom(i) || m_bottom < t.getPlatformTop(i))
+		{}
+		else if(m_bottom - 2 > t.getPlatformTop(i))
 		{}
 		else if(m_left > t.getPlatformLeft(i) && m_right < t.getPlatformRight(i))
 			m_movement.x -= t.getPlatformMovement(i).x;

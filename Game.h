@@ -6,6 +6,7 @@
 #include "Tilemap.h"
 #include "Player.h"
 #include "Menu.h"
+#include "StartScreen.h"
 
 class Game
 {
@@ -26,6 +27,7 @@ private:
 	Tilemap m_tilemap;
 	Player m_player;
 	Menu m_menu;
+	StartScreen m_startScreen;
 };
 
 #endif

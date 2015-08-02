@@ -23,7 +23,8 @@ private:
 
 public:
 	int getLevelMap(int y, int x);
-	void setMap(int i);
+	int getLevel();
+	void setMap(), setMap(int i);
 
 	std::vector<Platform> getPlatforms();
 	float getPlatformSize(), getPlatformTop(int i), getPlatformBottom(int i), getPlatformLeft(int i), getPlatformRight(int i);
@@ -33,11 +34,11 @@ public:
 	void setCratePos(int i, sf::Vector2f pos);
 	bool getCrateOnLeft(int i), getCrateOnRight(int i);
 	sf::Vector2f getCrateMovement(int i);
-	void CrateCrateCollision();
+	void CrateCrateCollision(sf::RenderWindow &window);
 
 public:
 	Tilemap();
-	void Update(sf::Time &deltaTime);
+	void Update(sf::Time &deltaTime, sf::RenderWindow &window);
 	void Draw(sf::RenderWindow &window);
 };
 

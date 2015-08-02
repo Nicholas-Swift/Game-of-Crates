@@ -27,6 +27,7 @@ Game::Game()
 	m_menu.setPlayer(m_player);
 	m_menu.Populate(0);
 	m_menu.Resize();
+	m_menu.setOptions(m_backgroundProcesses);
 
 	//m_startScreen;
 	m_startScreen.setPosition(m_window);
@@ -117,7 +118,7 @@ void Game::update(sf::Time deltaTime)
 		if(!m_menu.getMenuUp())
 		{
 			//update the game!
-			m_tilemap.Update(deltaTime);
+			m_tilemap.Update(deltaTime, m_window);
 
 			m_player.Update(m_tilemap);
 			m_player.Move(deltaTime, m_tilemap);

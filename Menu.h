@@ -28,8 +28,16 @@ private:
 	bool m_dragging; //for dragging on options (m_state 2)
 	int m_dragNum;
 
+	//selector
+	sf::RectangleShape m_selector;
+
 	//save stuff
 	int m_maxLevel, m_musicLevel, m_soundLevel, m_contrastLevel;
+
+	//for sound effects
+	sf::SoundBuffer m_clickNoise;
+	sf::Sound m_sound;
+	float soundInt;
 
 public:
 	int getState();
@@ -44,6 +52,7 @@ private:
 	void UpdateZero(), UpdateOne(), UpdateTwo();
 	void ClickZero(), ClickOne(), ClickTwo();
 	void ResizeZero(sf::Vector2f size), ResizeZero(), ResizeOne(sf::Vector2f size), ResizeOne(), ResizeTwo(sf::Vector2f size), ResizeTwo();
+	void setSoundLevel(int i);
 
 public:
 	Menu();
