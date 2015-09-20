@@ -41,6 +41,7 @@ private:
 
 public:
 	int getState();
+	int getPrevState();
 	bool getMenuUp();
 	void pressedEscape();
 	void setWindow(sf::RenderWindow &window), setTilemap(Tilemap &tilemap), setPlayer(Player &player);

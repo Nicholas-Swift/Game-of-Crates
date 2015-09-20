@@ -5,10 +5,9 @@
 
 const sf::Vector2f WINDOW_SIZE(960, 640);
 
-Game::Game()
+Game::Game() : m_tilemap(m_window)
 {
-	m_window.create(sf::VideoMode(WINDOW_SIZE.x, WINDOW_SIZE.y), "Platformer"/*, sf::Style::None*/);
-	m_window.setFramerateLimit(1000);
+	m_window.create(sf::VideoMode(WINDOW_SIZE.x, WINDOW_SIZE.y), "Game of Crates"/*, sf::Style::None*/);
 
 	//Update view
 	m_view.setCenter( (m_player.getLeft() + m_player.getRight()) / 2, m_player.getBottom() );
@@ -35,6 +34,8 @@ Game::Game()
 
 void Game::run()
 {
+	restart:
+
 	sf::Clock clock;
 	sf::Time timeSinceLastUpdate = sf::Time::Zero;
 	const sf::Time timePerFrame = sf::seconds(1.f / 1000.f); //1000 frames per second
@@ -42,8 +43,11 @@ void Game::run()
 	while (m_window.isOpen())
 	{
 		processEvents(); //check for events
-
 		timeSinceLastUpdate += clock.restart();
+
+		if(timeSinceLastUpdate.asSeconds() > 0.2)
+			goto restart;
+
 		while (timeSinceLastUpdate > timePerFrame) //this collects user input. If it slows down, game loop doesn't slow down.
 		{
 			timeSinceLastUpdate -= timePerFrame;
@@ -53,7 +57,6 @@ void Game::run()
 
 		render(); //render to the screen
 	}
-
 }
 
 void Game::processEvents()
@@ -69,7 +72,7 @@ void Game::processEvents()
 				if(!m_menu.getMenuUp()) //if menu not up
 					m_player.HandleEvents(Event.key.code, true);
 
-				if(Event.key.code == sf::Keyboard::Key::Escape)
+				if(Event.key.code == sf::Keyboard::Key::Escape && !(m_menu.getState() == 2 && m_menu.getPrevState() == 0))
 					m_menu.pressedEscape();
 			}
 
@@ -120,7 +123,7 @@ void Game::update(sf::Time deltaTime)
 			//update the game!
 			m_tilemap.Update(deltaTime, m_window);
 
-			m_player.Update(m_tilemap);
+			m_player.Update(m_tilemap, m_window);
 			m_player.Move(deltaTime, m_tilemap);
 			m_player.Animate(deltaTime);
 			m_player.Sound(deltaTime);

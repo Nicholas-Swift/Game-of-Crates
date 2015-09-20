@@ -14,6 +14,11 @@ int Menu::getState()
 	return m_state;
 }
 
+int Menu::getPrevState()
+{
+	return m_prevState;
+}
+
 bool Menu::getMenuUp()
 {
 	return m_menuUp;
@@ -79,13 +84,13 @@ void Menu::PopulateZero() //Main Menu
 	m_buttonsSprite.clear();
 
 	//title
-	m_title.setTextureRect(sf::IntRect(0, 192, 500, 200));
-	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 10);
+	m_title.setTextureRect(sf::IntRect(0, 0, 570, 57));
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50);
 
 	m_state = 0; //set state
 
 	//title and tilemap
-	m_tilemap->setMap(-1);
+	m_tilemap->setMap(-1, *m_window);
 	m_player->setPosition(sf::Vector2f(0, 0));
 
 	//set up levels rect and sprite
@@ -109,18 +114,17 @@ void Menu::PopulateZero() //Main Menu
 		sf::Sprite *sprite = new sf::Sprite;
 		sprite->setTexture(m_buttonTexture);
 
-		if(i < 5 && i < m_maxLevel)
-			sprite->setTextureRect(sf::IntRect(362 + i*64, 0, 64, 64));
-		else if(i < 5)
-			sprite->setTextureRect(sf::IntRect(362 + i*64, 0, 64, 64)); //SET TEXTURE BLCOKED OUT
-		else if(i < 10 && i < m_maxLevel)
-			sprite->setTextureRect(sf::IntRect(362 + (i-5)*64, 64, 64, 64));
-		else if(i < 10)
-			sprite->setTextureRect(sf::IntRect(362 + i*64, 0, 64, 64)); //SET TEXTURE BLOCKED OUT
-		else if(i < 15 && i < m_maxLevel)
-			sprite->setTextureRect(sf::IntRect(362 + (i-10)*64, 128, 64, 64));
+		if(i < m_maxLevel)
+		{
+			if(i < 5)
+				sprite->setTextureRect(sf::IntRect(362 + i*64, 0, 64, 64));
+			else if(i < 10)
+				sprite->setTextureRect(sf::IntRect(362 + (i-6)*64 + 64, 64, 64, 64));
+			else
+				sprite->setTextureRect(sf::IntRect(362 + (i-11)*64 + 64, 128, 64, 64));
+		}
 		else
-			sprite->setTextureRect(sf::IntRect(362 + i*64, 0, 64, 64)); //SET TEXTURE BLOCKED OUT
+			sprite->setTextureRect(sf::IntRect(362 + 4*64, 64*3, 64, 64));
 
 		sprite->setPosition(rect->getPosition());
 		m_buttonsSprite.push_back(*sprite);
@@ -149,7 +153,7 @@ void Menu::PopulateZero() //Main Menu
 	m_selector.setSize(m_buttonsRect[0].getSize());
 	m_selector.setFillColor(sf::Color::Transparent);
 	m_selector.setOutlineThickness(-2);
-	m_selector.setOutlineColor(sf::Color::Yellow);
+	m_selector.setOutlineColor(sf::Color::Green);
 }
 
 void Menu::UpdateZero()
@@ -190,17 +194,17 @@ void Menu::UpdateZero()
 				}
 				else if(i < 10)
 				{
-					if(m_buttonsSprite[i].getTextureRect() == sf::IntRect(362 + (i-5)*64, 64, 64, 64))
+					if(m_buttonsSprite[i].getTextureRect() == sf::IntRect(362 + (i-6)*64, 64, 64, 64))
 						{}
 					else
-						m_buttonsSprite[i].setTextureRect(sf::IntRect(362 + (i-5)*64 + 64, 64, 64, 64));
+						m_buttonsSprite[i].setTextureRect(sf::IntRect(362 + (i-6)*64 + 64, 64, 64, 64));
 				}
 				else
 				{
-					if(m_buttonsSprite[i].getTextureRect() == sf::IntRect(362 + (i-10)*64, 128, 64, 64))
+					if(m_buttonsSprite[i].getTextureRect() == sf::IntRect(362 + (i-11)*64, 128, 64, 64))
 						{}
 					else
-						m_buttonsSprite[i].setTextureRect(sf::IntRect(362 + (i-10)*64 + 64, 128, 64, 64));
+						m_buttonsSprite[i].setTextureRect(sf::IntRect(362 + (i-11)*64 + 64, 128, 64, 64));
 				}
 			}
 			else //set blocked out view
@@ -295,7 +299,7 @@ void Menu::ClickZero()
 			{
 				//play the selected level
 				m_player->setPosition(sf::Vector2f(0, 0));
-				m_tilemap->setMap(m_mapLevel);
+				m_tilemap->setMap(m_mapLevel, *m_window);
 				m_menuUp = false; //<--- temporary
 			}
 			else if(i == 16)
@@ -326,7 +330,7 @@ void Menu::PopulateOne() //Game Menu
 	m_state = 1; //set state
 
 	//title
-	m_title.setTextureRect(sf::IntRect(0, 0, 350, 96));
+	m_title.setTextureRect(sf::IntRect(0, 57, 570, 57));
 	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50);
 
 	//set up rects and sprites
@@ -433,8 +437,7 @@ void Menu::PopulateTwo()
 	m_state = 2; //set state
 
 	//title
-	//title
-	m_title.setTextureRect(sf::IntRect(0, 96, 350, 96));
+	m_title.setTextureRect(sf::IntRect(0, 57*2, 570, 57));
 	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50);
 
 	//set up labels
@@ -563,8 +566,8 @@ void Menu::ClickTwo()
 
 void Menu::ResizeZero(sf::Vector2f size)
 {
-	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 10); //set position
-	m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50); //set position
+	/*m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);*/
 
 	//Set levels and stuff
 	for(int i = 0; i < m_buttonsRect.size() - 3; i++)
@@ -597,7 +600,7 @@ void Menu::ResizeZero(sf::Vector2f size)
 
 void Menu::ResizeZero()
 {
-	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 10); //set position
+	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50); //set position
 
 	//set levels and stuff
 	for(int i = 0; i < m_buttonsRect.size() - 3; i++)
@@ -627,7 +630,7 @@ void Menu::ResizeZero()
 void Menu::ResizeOne(sf::Vector2f size)
 {
 	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50); //set position
-	m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);
+	/*m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);*/
 
 	for(int i = 0; i < m_buttonsRect.size(); i++)
 	{
@@ -656,7 +659,7 @@ void Menu::ResizeOne()
 void Menu::ResizeTwo(sf::Vector2f size)
 {
 	m_title.setPosition(m_window->getView().getCenter().x - m_title.getGlobalBounds().width/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 50); //set position
-	m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);
+	/*m_title.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);*/
 
 	for(int i = 0; i < m_buttonsRect.size(); i++)
 	{

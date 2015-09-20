@@ -157,21 +157,21 @@ void BackgroundProcesses::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 	//increase spawning time
 	m_spawnTime += deltaTime.asSeconds();
 
-	//despawn clouds and whisps
-	for(int i = 0; i < m_clouds.size(); i++) //despawn clouds
-		if(m_clouds[i].getPosition().x + m_clouds[i].getGlobalBounds().width < window.getView().getCenter().x - WINDOW_SIZE.x/2 || //out of bounds left
-			m_clouds[i].getPosition().y + m_clouds[i].getGlobalBounds().height < window.getView().getCenter().y - WINDOW_SIZE.y/2 || //out of bounds top
-			m_clouds[i].getPosition().y > window.getView().getCenter().y + WINDOW_SIZE.y/2) //out of bounds bottom
-			m_clouds.erase(m_clouds.begin() + i);
-	for(int i = 0; i < m_whisps.size(); i++) //despawn whisps
-		if(m_whisps[i].getPosition().x + m_whisps[i].getGlobalBounds().width < window.getView().getCenter().x - WINDOW_SIZE.x/2 ||
-			m_whisps[i].getPosition().y + m_whisps[i].getGlobalBounds().height < window.getView().getCenter().y - WINDOW_SIZE.y/2 ||
-			m_whisps[i].getPosition().y > window.getView().getCenter().y + WINDOW_SIZE.y/2)
-			m_whisps.erase(m_whisps.begin() + i);
-
 	//spawn clouds and whisps
 	if(m_spawnTime >= m_spawnMaxTime)
 	{
+		//despawn clouds and whisps
+		for(int i = 0; i < m_clouds.size(); i++) //despawn clouds
+			if(m_clouds[i].getPosition().x + m_clouds[i].getGlobalBounds().width < window.getView().getCenter().x - WINDOW_SIZE.x/2 || //out of bounds left
+				m_clouds[i].getPosition().y + m_clouds[i].getGlobalBounds().height < window.getView().getCenter().y - WINDOW_SIZE.y/2 || //out of bounds top
+				m_clouds[i].getPosition().y > window.getView().getCenter().y + WINDOW_SIZE.y/2) //out of bounds bottom
+				m_clouds.erase(m_clouds.begin() + i);
+		for(int i = 0; i < m_whisps.size(); i++) //despawn whisps
+			if(m_whisps[i].getPosition().x + m_whisps[i].getGlobalBounds().width < window.getView().getCenter().x - WINDOW_SIZE.x/2 ||
+				m_whisps[i].getPosition().y + m_whisps[i].getGlobalBounds().height < window.getView().getCenter().y - WINDOW_SIZE.y/2 ||
+				m_whisps[i].getPosition().y > window.getView().getCenter().y + WINDOW_SIZE.y/2)
+				m_whisps.erase(m_whisps.begin() + i);
+
 		//spawn clouds
 		if(m_clouds.size() <= m_cloudMax)
 			SpawnHelper(window, m_clouds, m_cloudsTexture, m_rctInt, m_rctRandom, m_rcInt, m_rcRandom, m_rcsInt, m_rcsRandom);

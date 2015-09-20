@@ -43,7 +43,7 @@ public:
 public:
 	Player();
 	void HandleEvents(sf::Keyboard::Key, bool isPressed);
-	void Update(Tilemap &t);
+	void Update(Tilemap &t, sf::RenderWindow &window);
 	void Move(sf::Time &deltaTime, Tilemap &t);
 	void Animate(sf::Time &deltaTime);
 	void Sound(sf::Time &deltaTime);

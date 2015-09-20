@@ -21,10 +21,14 @@ private:
 	int m_level;
 	int m_levelMap[50][50]; //50 because had to initilize a variable, make it bigger than neccessary.
 
+	sf::Texture m_loadingScreenTexture;
+	sf::Sprite m_loadingScreen;
+	sf::Sprite m_loadingText;
+
 public:
 	int getLevelMap(int y, int x);
 	int getLevel();
-	void setMap(), setMap(int i);
+	void setMap(sf::RenderWindow &window), setMap(int i, sf::RenderWindow &window);
 
 	std::vector<Platform> getPlatforms();
 	float getPlatformSize(), getPlatformTop(int i), getPlatformBottom(int i), getPlatformLeft(int i), getPlatformRight(int i);
@@ -36,8 +40,11 @@ public:
 	sf::Vector2f getCrateMovement(int i);
 	void CrateCrateCollision(sf::RenderWindow &window);
 
+private:
+	void LoadLevelZero(), LoadLevelOne(), LoadLevelTwo(), LoadLevelThree(), LoadLevelFour(), LoadLevelFive(), LoadLevelSix(), LoadLevelSeven(), LoadLevelEight(), LoadLevelNine(), LoadLevelTen(), LoadLevelEleven(), LoadLevelTwelve(), LoadLevelThirteen(), LoadLevelFourteen(), LoadLevelFifteen();
+
 public:
-	Tilemap();
+	Tilemap(sf::RenderWindow &window);
 	void Update(sf::Time &deltaTime, sf::RenderWindow &window);
 	void Draw(sf::RenderWindow &window);
 };

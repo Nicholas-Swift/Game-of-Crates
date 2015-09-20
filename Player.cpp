@@ -100,7 +100,7 @@ void Player::HandleEvents(sf::Keyboard::Key key, bool isPressed)
 		m_isMovingLeft = isPressed;
 }
 
-void Player::Update(Tilemap &t)
+void Player::Update(Tilemap &t, sf::RenderWindow &window)
 {
 	m_top = m_rect.getPosition().y;
 	m_bottom = m_rect.getPosition().y + m_rect.getSize().y;
@@ -111,14 +111,14 @@ void Player::Update(Tilemap &t)
 	if(t.getLevelMap(m_bottom/64, m_left/64) == 999 || t.getLevelMap(m_bottom/64, m_right/64) == 999 || t.getLevelMap(m_top/64, m_left/64) == 999 || t.getLevelMap(m_top/64, m_right/64) == 999)
 	{
 		setPosition(sf::Vector2f(0, 0));
-		t.setMap();
+		t.setMap(window);
 	}
 
 	//respawning when falling through the bottom of the map!!
 	if(m_bottom >= 30*64)
 	{
-		std::cout<<"SPAWNED"<<std::endl;
 		setPosition(sf::Vector2f(0, 0));
+		t.setMap(t.getLevel(), window);
 	}
 
 	//downward collision on tilemap
@@ -145,7 +145,7 @@ void Player::Update(Tilemap &t)
 		//downward collision on crate
 		if(m_right < t.getCrateLeft(i) || m_left > t.getCrateRight(i) || m_top > t.getCrateBottom(i) || m_bottom < t.getCrateTop(i))
 		{}
-		else if(m_bottom >= t.getCrateTop(i) && m_bottom - 2 <= t.getCrateTop(i))
+		else if(m_bottom >= t.getCrateTop(i) && m_bottom - 2 <= t.getCrateTop(i) && m_right - 2 > t.getCrateLeft(i) && m_left + 2 < t.getCrateRight(i))
 		{
 			m_onGround = true;
 			m_onCrate = true;
