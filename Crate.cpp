@@ -33,6 +33,11 @@ bool Crate::getOnCrate()
 	return m_onCrate;
 }
 
+void Crate::setOnCrate()
+{
+	m_onCrate = true;
+}
+
 sf::Vector2f Crate::GetSize()
 {
 	return m_rect.getSize();
@@ -107,7 +112,7 @@ Crate::Crate()
 	m_onCrate = m_onRight = m_onLeft = false;
 }
 
-void Crate::Update(sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p)
+void Crate::Update(sf::RenderWindow &window, sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p)
 {
 	//don't update if you're out of scope!
 	/*if(m_bottom < m_window.getView().getCenter().y - m_window.getSize().y/2 || m_left <)*/

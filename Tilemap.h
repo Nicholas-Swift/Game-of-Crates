@@ -25,6 +25,10 @@ private:
 	sf::Sprite m_loadingScreen;
 	sf::Sprite m_loadingText;
 
+	//credits
+	sf::Sprite m_creditsSprite;
+	sf::Texture m_creditsTexture;
+
 public:
 	int getLevelMap(int y, int x);
 	int getLevel();
@@ -41,7 +45,7 @@ public:
 	void CrateCrateCollision(sf::RenderWindow &window);
 
 private:
-	void LoadLevelZero(), LoadLevelOne(), LoadLevelTwo(), LoadLevelThree(), LoadLevelFour(), LoadLevelFive(), LoadLevelSix(), LoadLevelSeven(), LoadLevelEight(), LoadLevelNine(), LoadLevelTen(), LoadLevelEleven(), LoadLevelTwelve(), LoadLevelThirteen(), LoadLevelFourteen(), LoadLevelFifteen();
+	void LoadLevelZero(), LoadLevelOne(), LoadLevelTwo(), LoadLevelThree(), LoadLevelFour(), LoadLevelFive(), LoadLevelSix(), LoadLevelSeven(), LoadLevelEight(), LoadLevelNine(), LoadLevelTen(), LoadLevelEleven(), LoadLevelTwelve(), LoadLevelThirteen(), LoadLevelFourteen(), LoadLevelFifteen(), LoadLevelCredits();
 
 public:
 	Tilemap(sf::RenderWindow &window);

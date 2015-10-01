@@ -24,11 +24,12 @@ public:
 	sf::Vector2f GetSize(), getMovement();
 	float getTop(), getBottom(), getLeft(), getRight();
 	bool getOnLeft(), getOnRight(), getOnCrate();
+	void setOnCrate();
 	void CrateCollide(float top, float bottom, float left, float right);
 
 public:
 	Crate();
-	void Update(sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p);
+	void Update(sf::RenderWindow &window, sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p);
 	void Draw(sf::RenderWindow &window);
 };
 

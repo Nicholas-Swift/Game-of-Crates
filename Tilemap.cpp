@@ -963,28 +963,59 @@ void Tilemap::LoadLevelTen()
 	//push back crates
 	Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(5*64, 7*64 - crate->GetSize().y));
 	m_crates.push_back(*crate);
+
+	//populate map with trees, rocks, shrooms, whatever
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(3*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(3*64 - 31, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(6*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(8*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(1*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(21*64, 14*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(2*64, 2*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(3*64 - 18, 2*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(2*64 + 12, 9*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(3*64 + 12, 9*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
 const int level11[30][30] = {
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 190, 192, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 290, 292, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	190, 191, 502, 492, 292, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	390, 391, 391, 391, 392, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 999,
-	000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192,
-	000, 000, 000, 000, 000, 000, 390, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 390, 391, 392, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 190, 191, 191, 191, 191, 192, 000, 000, 000, 390, 391, 392, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 490, 500, 191, 192, 000, 190, 191, 191, 191, 502, 492, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 392, 000, 390, 391, 391, 391, 391, 391, 392,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000,
+	290, 292, 900, 000, 000, 190, 191, 191, 191, 191, 191, 191, 191, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 390, 391, 391, 391, 391, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 390, 392, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 190, 191, 191, 191, 191, 191, 191, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 390, 391, 391, 391, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 190, 192, 000, 000, 901, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 390, 392, 000, 000, 000, 000, 190, 192, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 999, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	290, 490, 500, 191, 192, 000, 190, 191, 502, 492, 490, 500, 191, 502, 492, 490, 500, 191, 192, 000, 190, 191, 502, 492, 292, 000, 000, 000, 000, 000,
+	390, 391, 391, 391, 392, 000, 390, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 392, 000, 390, 391, 391, 391, 392, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000
 };
 
@@ -1002,46 +1033,98 @@ void Tilemap::LoadLevelEleven()
 		for(int j = 0; j < levelSizeX; j++)
 			m_levelMap[i][j] = level11[i][j];
 
-	//no platforms!
+	//pushback moving platforms
+	for(int i = 0; i < levelSizeY; i++)
+	{
+		for(int j = 0; j < levelSizeX; j++)
+		{
+				if(m_levelMap[i][j] == 900)
+			{
+				Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 901)
+			{
+				Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 902)
+			{
+					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 903)
+			{
+				Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 904)
+			{
+				Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 905)
+			{
+				Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+		}
+	}
 
 	//push back crates
-	Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(2*64, 5*64 - crate->GetSize().y));
+	Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(10*64, 4*64 - crate->GetSize().y));
 	m_crates.push_back(*crate);
 
-	crate->SetPosition(sf::Vector2f(2*64, 4*64 - crate->GetSize().y));
+	crate->SetPosition(sf::Vector2f(21*64, 6*64 - crate->GetSize().y));
 	m_crates.push_back(*crate);
 
-	crate->SetPosition(sf::Vector2f(4*64, 12*64 - crate->GetSize().y));
-	m_crates.push_back(*crate);
+	//populate map with trees, rocks, shrooms, whatever
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(0*64, 4*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	crate->SetPosition(sf::Vector2f(18*64, 10*64 - crate->GetSize().y));
-	m_crates.push_back(*crate);
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(20*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	crate->SetPosition(sf::Vector2f(22*64, 9*64 - crate->GetSize().y));
-	m_crates.push_back(*crate);
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(9*64, 10*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(17*64, 17*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(5*64, 10*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(20*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(21*64 - 16, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(6*64 + 12, 10*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
 const int level12[30][30] = {
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 902, 000, 000, 000, 000, 190, 191, 191, 191, 191, 192, 000, 906, 000, 000, 190, 192, //note: this 906 is still and shifted back. Check in the loadLevelTwelve();
-	000, 000, 000, 000, 000, 000, 290, 490, 500, 192, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 390, 391, 391, 392, 000, 000, 901, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 905, 000, 000, 000, 000, 000, 190, 191, 192, 000, 190, 191, 500, 492, 292,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 502, 492, 291, 292, 000, 390, 391, 391, 391, 392,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 901, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 502, 492, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	190, 191, 191, 191, 191, 191, 192, 000, 390, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 291, 291, 291, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	390, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 999,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192,
-	000, 000, 000, 000, 190, 191, 191, 191, 191, 191, 192, 000, 000, 000, 900, 000, 000, 000, 000, 190, 192, 000, 000, 190, 192, 000, 000, 000, 390, 392,
-	000, 000, 000, 000, 390, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 390, 392, 000, 000, 290, 292, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 390, 392, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 000, 000, 000, 905, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 290, 292, 000, 999, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192,
+	000, 000, 000, 290, 292, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 390, 392,
+	000, 000, 000, 290, 292, 000, 390, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 290, 292, 000, 000, 000, 000,
+	000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 903, 000, 000, 000, 000, 390, 392, 000, 390, 392, 000, 000, 000, 000,
+	000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 290, 490, 500, 191, 191, 191, 191, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 905, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 390, 391, 391, 391, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 000, 290, 291, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 902, 000, 000, 390, 391, 392, 000, 000, 290, 291, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 291, 292,
+	190, 191, 191, 192, 000, 000, 000, 000, 000, 903, 000, 000, 000, 290, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 291, 292,
+	390, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 291, 490, 500, 191, 191, 191, 191, 191, 191, 191, 191, 191, 502, 492, 291, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 392
 };
 
 void Tilemap::LoadLevelTwelve()
@@ -1093,37 +1176,81 @@ void Tilemap::LoadLevelTwelve()
 				Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
 				m_platforms.push_back(*p);
 			}
-			else if(m_levelMap[i][j] == 906)
-			{
-				Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x - 33, i * m_size.y));
-				m_platforms.push_back(*p);
-			}
 		}
 	}
+
+	//push back crates
+	Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(16*64, 17*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(16*64, 18*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(18*64, 18*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(23*64, 14*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(8*64, 10*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(8*64, 11*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(25*64, 7*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(29*64, 5*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	//populate map with trees, rocks, shrooms, whatever
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(2*64, 17*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(20*64, 18*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(24*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(11*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(15*64, 16*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(22*64, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(11*64 - 16, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(14*64, 16*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
 const int level13[30][30] = {
-	000, 000, 000, 000, 000, 000, 999, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 190, 191, 191, 192, 000, 900, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	190, 192, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 903, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 901, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 904, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 901, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 190, 191, 191, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 902, 000, 000, 000, 390, 392, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 903, 000, 000, 000, 390, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 292
-	, 000, 000, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 290, 291, 291, 490, 500, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 392, 000, 000, 000, 000, 000, 000,
-	290, 292, 000, 000, 000, 390, 391, 391, 391, 391, 391, 391, 392, 000, 000, 900, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000,
-	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 191, 502, 492, 292, 000, 000, 000,
-	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 902, 000, 000, 290, 291, 291, 291, 291, 292, 000, 000, 000,
-	290, 490, 500, 191, 191, 191, 192, 000, 000, 190, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 290, 291, 291, 291, 291, 292, 000, 000, 000,
-	390, 391, 391, 391, 391, 391, 392, 000, 000, 390, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 190, 192, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 290, 292, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	190, 191, 502, 492, 292, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	390, 391, 391, 391, 392, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 999,
+	000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192,
+	000, 000, 000, 000, 000, 000, 390, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 390, 391, 392, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 190, 191, 191, 191, 191, 192, 000, 000, 000, 390, 391, 392, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 490, 500, 191, 192, 000, 190, 191, 191, 191, 502, 492, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 392, 000, 390, 391, 391, 391, 391, 391, 392,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000
 };
 
 void Tilemap::LoadLevelThirteen()
@@ -1139,6 +1266,219 @@ void Tilemap::LoadLevelThirteen()
 	for(int i = 0; i < levelSizeY; i++)
 		for(int j = 0; j < levelSizeX; j++)
 			m_levelMap[i][j] = level13[i][j];
+
+	//no platforms!
+
+	//push back crates
+	Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(2*64, 5*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(2*64, 4*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(4*64, 12*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(18*64, 10*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(22*64, 9*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	//populate map with trees, rocks, shrooms, whatever
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(0*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(5*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(20*64, 16*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(5*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(23*64, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(24*64 - 16, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(6*64 + 12, 12*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+}
+
+const int level14[30][30] = {
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 902, 000, 000, 000, 000, 190, 191, 191, 191, 191, 192, 000, 000, 900, 000, 000, 000,
+	000, 000, 000, 000, 000, 290, 292, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 000, 190, 192,
+	000, 000, 000, 000, 000, 390, 392, 000, 390, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 190, 191, 502, 492, 292,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 502, 492, 291, 292, 000, 390, 391, 391, 391, 392,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 901, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 502, 492, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	190, 191, 191, 191, 191, 191, 192, 000, 390, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 291, 291, 291, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	390, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 999,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192,
+	000, 000, 000, 000, 190, 191, 191, 191, 191, 191, 192, 000, 000, 000, 900, 000, 000, 000, 190, 191, 192, 000, 000, 190, 192, 000, 000, 000, 390, 392,
+	000, 000, 000, 000, 390, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 390, 391, 392, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 290, 292, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 390, 392, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000
+};
+
+void Tilemap::LoadLevelFourteen()
+{
+	//empty
+	m_crates.clear();
+	m_bushes.clear();
+	m_rockshrooms.clear();
+	m_trees.clear();
+	m_platforms.clear();
+
+	//set m_levelMap to the current level
+	for(int i = 0; i < levelSizeY; i++)
+		for(int j = 0; j < levelSizeX; j++)
+			m_levelMap[i][j] = level14[i][j];
+
+	//pushback moving platforms
+	for(int i = 0; i < levelSizeY; i++)
+	{
+		for(int j = 0; j < levelSizeX; j++)
+		{
+				if(m_levelMap[i][j] == 900)
+			{
+				Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 901)
+			{
+				Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 902)
+			{
+					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 903)
+			{
+				Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 904)
+			{
+				Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+			else if(m_levelMap[i][j] == 905)
+			{
+				Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
+				m_platforms.push_back(*p);
+			}
+		}
+	}
+
+	//push back crates
+	Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(10*64, 7*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(27*64, 4*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(27*64, 3*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(8*64, 2*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	crate->SetPosition(sf::Vector2f(24*64, 13*64 - crate->GetSize().y));
+	m_crates.push_back(*crate);
+
+	//populate map with trees, rocks, shrooms, whatever
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(2*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(3*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(11*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(5*64, 1*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(5*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(6*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(19*64, 5*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(22*64, 1*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(18*64, 5*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(9*64, 2*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(4*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(1*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*1/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(10*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(23*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+}
+
+const int level15[30][30] = {
+	000, 000, 000, 000, 000, 000, 999, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 190, 191, 191, 192, 000, 900, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	190, 192, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 903, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 901, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 904, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 901, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 190, 191, 191, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 902, 000, 000, 000, 390, 392, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 903, 000, 000, 000, 390, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 292, 000, 000, 000, 000, 000, 902, 000, 000, 000, 000, 000, 000, 190, 191, 192, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 290, 291, 291, 490, 500, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 392, 000, 000, 000, 000, 000, 000,
+	290, 292, 000, 000, 000, 390, 391, 391, 391, 391, 391, 391, 392, 000, 000, 900, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 192, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 190, 191, 191, 502, 492, 292, 000, 000, 000,
+	290, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 902, 000, 000, 290, 291, 291, 291, 291, 292, 000, 000, 000,
+	290, 490, 500, 191, 191, 191, 192, 000, 000, 190, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 290, 291, 291, 291, 291, 292, 000, 000, 000,
+	390, 391, 391, 391, 391, 391, 392, 000, 000, 390, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 390, 391, 391, 391, 391, 392, 000, 000, 000
+};
+
+void Tilemap::LoadLevelFifteen()
+{
+	//empty
+	m_crates.clear();
+	m_bushes.clear();
+	m_rockshrooms.clear();
+	m_trees.clear();
+	m_platforms.clear();
+
+	//set m_levelMap to the current level
+	for(int i = 0; i < levelSizeY; i++)
+		for(int j = 0; j < levelSizeX; j++)
+			m_levelMap[i][j] = level15[i][j];
 
 	//pushback moving platforms
 	for(int i = 0; i < levelSizeY; i++)
@@ -1202,17 +1542,44 @@ void Tilemap::LoadLevelThirteen()
 
 	crate->SetPosition(sf::Vector2f(15*64, 10*64 - crate->GetSize().y));
 	m_crates.push_back(*crate);
+
+	//populate map with trees, rocks, shrooms, whatever
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(5*64, 18*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(11*64, 14*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(22*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(16*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(15*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(27*64, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(22*64 - 16, 16*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(10*64 - 16, 18*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(15*64 - 54, 7*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
-const int level14[30][30] = {
-	000, 000, 000, 000, 102, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 202, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 202, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 190, 000, 191, 000, 192, 000, 000, 000, 190, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 290, 000, 201, 000, 292, 000, 000, 000, 390, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 290, 000, 201, 191, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 290, 000, 000, 000, 490, 000, 191, 191, 191, 191, 191, 192, 000, 000, 902, 000, 000, 190, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 390, 000, 000, 000, 391, 000, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+const int levelCredits[levelSizeY][levelSizeX] = {
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	190, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	290, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 291, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	390, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
@@ -1222,12 +1589,12 @@ const int level14[30][30] = {
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 200, 204, 208, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
 	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000
-};
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
+	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000};
 
-void Tilemap::LoadLevelFourteen()
+void Tilemap::LoadLevelCredits()
 {
 	//empty
 	m_crates.clear();
@@ -1239,45 +1606,7 @@ void Tilemap::LoadLevelFourteen()
 	//set m_levelMap to the current level
 	for(int i = 0; i < levelSizeY; i++)
 		for(int j = 0; j < levelSizeX; j++)
-			m_levelMap[i][j] = level14[i][j];
-}
-
-const int level15[30][30] = {
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 190, 000, 191, 191, 192, 000, 000, 000, 190, 191, 192, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 290, 000, 191, 000, 000, 000, 000, 000, 390, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 290, 000, 291, 191, 292, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 290, 000, 000, 000, 490, 000, 000, 191, 191, 191, 191, 192, 000, 000, 902, 000, 000, 190, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 390, 000, 191, 191, 391, 000, 000, 391, 391, 391, 391, 392, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 200, 204, 208, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000,
-	000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000, 000
-};
-
-void Tilemap::LoadLevelFifteen()
-{
-	//empty
-	m_crates.clear();
-	m_bushes.clear();
-	m_rockshrooms.clear();
-	m_trees.clear();
-	m_platforms.clear();
-
-	//set m_levelMap to the current level
-	for(int i = 0; i < levelSizeY; i++)
-		for(int j = 0; j < levelSizeX; j++)
-			m_levelMap[i][j] = level15[i][j];
+			m_levelMap[i][j] = levelCredits[i][j];
 }
 
 int Tilemap::getLevelMap(int y, int x)
@@ -1375,9 +1704,12 @@ void Tilemap::CrateCrateCollision(sf::RenderWindow &window)
 				m_crates[i].getTop() > window.getView().getCenter().y + window.getSize().y/2 ||
 				m_crates[i].getRight() < window.getView().getCenter().x - window.getSize().x/2 ||
 				m_crates[i].getLeft() > window.getView().getCenter().x + window.getSize().x/2)
-			{}*/
-			//else
-			//{
+			{
+				m_crates[i].setOnCrate();
+				break;
+			}
+			else
+			{*/
 				m_crates[i].CrateCollide(getCrateTop(j), getCrateBottom(j), getCrateLeft(j), getCrateRight(j));
 				if(m_crates[i].getOnCrate() == true)
 					break;
@@ -1472,504 +1804,10 @@ void Tilemap::setMap(int i, sf::RenderWindow &window)
 	case 14:
 		LoadLevelFifteen();
 		break;
+	case 15:
+		LoadLevelCredits();
+		break;
 	}
-
-	/*
-
-	if(i == -1)
-	{
-		//empty
-		m_crates.clear();
-		m_bushes.clear();
-		m_rockshrooms.clear();
-		m_trees.clear();
-		m_platforms.clear();
-
-		//set m_levelMap to the current level
-		for(int i = 0; i < levelSizeY; i++)
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = levelMainMenu[i][j];
-	}
-	else if(i == 0)
-	{
-		//empty
-		m_crates.clear();
-		m_bushes.clear();
-		m_rockshrooms.clear();
-		m_trees.clear();
-		m_platforms.clear();
-
-		//set m_levelMap to the current level
-		for(int i = 0; i < levelSizeY; i++)
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level1[i][j];
-
-		//pushback moving platforms
-		for(int i = 0; i < levelSizeY; i++)
-		{
-			for(int j = 0; j < levelSizeX; j++)
-			{
-				if(m_levelMap[i][j] == 900)
-				{
-					Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 901)
-				{
-					Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 902)
-				{
-					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 903)
-				{
-					Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 904)
-				{
-					Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 905)
-				{
-					Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-			}
-		}
-
-		//populate with crates
-		Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(8*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(6*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(6*64, 5*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		//populate map with trees, rocks, shrooms, whatever
-		sf::Sprite *tree1 = new sf::Sprite(); tree1->setTexture(m_treesTexture); tree1->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree1->setPosition(7*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree1);
-
-		sf::Sprite *rockshroom1 = new sf::Sprite; rockshroom1->setTexture(m_rockshroomsTexture); rockshroom1->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom1->setPosition(7*64, 6*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom1);
-
-		sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
-		bush1->setPosition(9*64, 6*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
-	}
-	else if(i == 1)
-	{
-		//empty
-		m_crates.clear();
-		m_bushes.clear();
-		m_rockshrooms.clear();
-		m_trees.clear();
-		m_platforms.clear();
-
-		//set m_levelMap to the current level
-		for(int i = 0; i < levelSizeY; i++)
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level2[i][j];
-
-		//pushback moving platforms
-		for(int i = 0; i < levelSizeY; i++)
-		{
-			for(int j = 0; j < levelSizeX; j++)
-			{
-				if(m_levelMap[i][j] == 900)
-				{
-					Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 901)
-				{
-					Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 902)
-				{
-					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 903)
-				{
-					Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 904)
-				{
-					Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 905)
-				{
-					Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-			}
-		}
-
-		//no crates this map
-
-		//populate map with trees, rocks, shrooms, whatever
-		sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(0*64 - 14, 3*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(2*64 - 12, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(18*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(9*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(0*64, 3*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(0*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(1*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(18*64 + 6, 6*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
-		bush1->setPosition(9*64 + 12, 8*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
-	}
-	else if(i == 2)
-	{
-		//empty
-		m_crates.clear();
-		m_bushes.clear();
-		m_rockshrooms.clear();
-		m_trees.clear();
-		m_platforms.clear();
-
-		//set m_levelMap to the current level
-		for(int i = 0; i < levelSizeY; i++)
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level3[i][j];
-
-		//for platforms
-		for(int i = 0; i < levelSizeY; i++)
-		{
-			for(int j = 0; j < levelSizeX; j++)
-			{
-				if(m_levelMap[i][j] == 900)
-				{
-					Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 901)
-				{
-					Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 902)
-				{
-					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 903)
-				{
-					Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 904)
-				{
-					Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 905)
-				{
-					Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-			}
-		}
-
-		//push back crates
-		Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(0*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(3*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(2*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(2*64, 5*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(17*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(17*64, 5*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(17*64, 4*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(24*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		//populate map with trees, rocks, shrooms, whatever
-		sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(2*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(7*64, 3*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(18*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(2*64, 6*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(18*64, 6*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(14*64, 6*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
-		bush1->setPosition(7*64 + 12, 3*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
-
-		bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*3/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
-		bush1->setPosition(9*64 + 12, 6*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
-	}
-	else if(i == 3)
-	{
-		//empty
-		m_crates.clear();
-		m_bushes.clear();
-		m_rockshrooms.clear();
-		m_trees.clear();
-		m_platforms.clear();
-
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level4[i][j];
-
-		//for platforms
-		for(int i = 0; i < levelSizeY; i++)
-		{
-			for(int j = 0; j < levelSizeX; j++)
-			{
-				if(m_levelMap[i][j] == 900)
-				{
-					Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 901)
-				{
-					Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 902)
-				{
-					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 903)
-				{
-					Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 904)
-				{
-					Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 905)
-				{
-					Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-			}
-		}
-
-		//push back crates
-		Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(6*64, 3*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(12*64, 3*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(2*64, 6*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		//populate map with trees, rocks, shrooms, whatever
-		sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(1*64, 3*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(18*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(2*64, 3*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(18*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(3*64, 14*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-	}
-	else if(i == 4)
-	{
-		//empty
-		m_crates.clear();
-		m_bushes.clear();
-		m_rockshrooms.clear();
-		m_trees.clear();
-		m_platforms.clear();
-
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level5[i][j];
-
-		//pushback moving platforms
-		for(int i = 0; i < levelSizeY; i++)
-		{
-			for(int j = 0; j < levelSizeX; j++)
-			{
-				if(m_levelMap[i][j] == 900)
-				{
-					Platform *p = new Platform((j) * m_size.x, (j) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 901)
-				{
-					Platform *p = new Platform((j - 1) * m_size.x, (j + 1) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 902)
-				{
-					Platform *p = new Platform((j - 2) * m_size.x, (j + 2) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 903)
-				{
-					Platform *p = new Platform((j - 3) * m_size.x, (j + 3) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 904)
-				{
-					Platform *p = new Platform((j - 4) * m_size.x, (j + 4) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-				else if(m_levelMap[i][j] == 905)
-				{
-					Platform *p = new Platform((j - 5) * m_size.x, (j + 5) * m_size.x, sf::Vector2f(j * m_size.x, i * m_size.y));
-					m_platforms.push_back(*p);
-				}
-			}
-		}
-
-		//push back crates
-		Crate *crate = new Crate; crate->SetPosition(sf::Vector2f(2*64, 15*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(9*64, 13*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(9*64, 14*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(21*64, 7*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(7*64, 5*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(7*64, 4*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		crate = new Crate; crate->SetPosition(sf::Vector2f(15*64, 1*64 - crate->GetSize().y));
-		m_crates.push_back(*crate);
-
-		//populate map with trees, rocks, shrooms, whatever
-		sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(1*64, 15*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(16*64 - 13, 15*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(15*64, 15*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(18*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-		tree->setPosition(8*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-		sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(14*64, 15*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(16*64, 15*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(18*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-		rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-		rockshroom->setPosition(3*64, 15*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-	}
-	else if(i == 5)
-	{
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level6[i][j];
-	}
-	else if(i == 6)
-	{
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level7[i][j];
-	}
-	else if(i == 7)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level8[i][j];
-	else if(i == 8)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level9[i][j];
-	else if(i == 9)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level10[i][j];
-	else if(i == 10)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level11[i][j];
-	else if(i == 11)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level12[i][j];
-	else if(i == 12)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level13[i][j];
-	else if(i == 13)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level14[i][j];
-	else if(i == 14)
-		for(int i = 0; i < levelSizeY; i++) //set m_levelMap to the current level
-			for(int j = 0; j < levelSizeX; j++)
-				m_levelMap[i][j] = level15[i][j];
-
-	*/
 }
 
 Tilemap::Tilemap(sf::RenderWindow &window)
@@ -1992,6 +1830,11 @@ Tilemap::Tilemap(sf::RenderWindow &window)
 
 	m_loadingText.setTexture(m_loadingScreenTexture);
 	m_loadingText.setTextureRect(sf::IntRect(0, 2001, 340, 56));
+
+	//credits
+	m_creditsTexture.loadFromFile("Assets/credits.png");
+	m_creditsSprite.setTexture(m_creditsTexture);
+	m_creditsSprite.setPosition(window.getView().getCenter().x - m_creditsSprite.getGlobalBounds().width/2, window.getView().getCenter().y + window.getSize().y/2);
 }
 
 void Tilemap::Update(sf::Time &deltaTime, sf::RenderWindow &window)
@@ -2005,7 +1848,7 @@ void Tilemap::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 	deleted:
 	for(int i = 0; i < m_crates.size(); i++)
 	{
-		m_crates[i].Update(deltaTime, m_levelMap, m_platforms);
+		m_crates[i].Update(window, deltaTime, m_levelMap, m_platforms);
 		if(m_crates[i].getBottom() > 40*64)
 		{
 			m_crates.erase(m_crates.begin() + i);
@@ -2014,6 +1857,12 @@ void Tilemap::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 		CrateCrateCollision(window);
 	}
 
+	//credits
+	if(m_level == 15)
+	{
+		m_creditsSprite.setPosition(window.getView().getCenter().x - m_creditsSprite.getGlobalBounds().width/2, m_creditsSprite.getGlobalBounds().top);
+		m_creditsSprite.move(0, -0.022*deltaTime.asMilliseconds());
+	}
 }
 
 void Tilemap::Draw(sf::RenderWindow &window)
@@ -2089,4 +1938,8 @@ void Tilemap::Draw(sf::RenderWindow &window)
 				m_crates[i].Draw(window);
 		}
 	}
+
+	//credits
+	if(m_level == 15)
+		window.draw(m_creditsSprite);
 }

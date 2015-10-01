@@ -29,7 +29,7 @@ void Player::setSoundLevel(int i)
 	if(i <= 0)
 		m_walking.setVolume(0);
 	else
-		m_walking.setVolume(i*1.3);
+		m_walking.setVolume(i/2);
 }
 
 void Player::setPosition(sf::Vector2f pos)
@@ -94,9 +94,9 @@ Player::Player()
 
 void Player::HandleEvents(sf::Keyboard::Key key, bool isPressed)
 {
-	if (key == sf::Keyboard::Key::D)
+	if (key == sf::Keyboard::Key::D || key == sf::Keyboard::Key::Right)
 		m_isMovingRight = isPressed;
-	if (key == sf::Keyboard::Key::A)
+	if (key == sf::Keyboard::Key::A || key == sf::Keyboard::Key::Left)
 		m_isMovingLeft = isPressed;
 }
 
@@ -240,7 +240,7 @@ void Player::Move(sf::Time &deltaTime, Tilemap &t)
 	}
 
 	//jumping
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		m_jumped = true;
 
 	//if hit top of block, fall
@@ -319,6 +319,17 @@ void Player::Move(sf::Time &deltaTime, Tilemap &t)
 		else if(int(m_bottom) <= t.getCrateTop(i))
 			m_movement.x -= t.getCrateMovement(i).x;
 	}
+
+	/* if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) //FOR GOD MODE!!
+		m_movement.y = -0.25;
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+		m_movement.y = 0.25;
+	else
+		m_movement.y = 0;
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+		m_movement.x = -0.25;
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+		m_movement.x = 0.25; */
 }
 
 void Player::Animate(sf::Time &deltaTime)

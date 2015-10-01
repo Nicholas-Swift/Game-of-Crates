@@ -538,6 +538,7 @@ void Menu::UpdateTwo()
 		else
 			m_buttonsSprite[3].setTextureRect(sf::IntRect(0, 448 + 144, 200, 48));
 	}
+
 	else
 	{
 		//mouse is hovering the button sprite -> set texture rects to hovering stuff
@@ -731,6 +732,10 @@ void Menu::Load()
 		}
 	}
 	props.close();
+
+	
+	if(lvl > 14)
+		lvl = 14;
 
 	m_maxLevel = m_mapLevel = lvl;
 	m_musicLevel = mus;

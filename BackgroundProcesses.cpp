@@ -12,7 +12,7 @@ void BackgroundProcesses::setMusicVolume(int i)
 	if(i <= 0)
 		m_musicBackground.setVolume(0);
 	else
-		m_musicBackground.setVolume(i*1.5);
+		m_musicBackground.setVolume(i/2);
 }
 
 void BackgroundProcesses::setSoundEffectsVolume(int i)
@@ -20,7 +20,7 @@ void BackgroundProcesses::setSoundEffectsVolume(int i)
 	if(i <= 0)
 		m_soundWind.setVolume(0);
 	else
-		m_soundWind.setVolume(i);
+		m_soundWind.setVolume(i*2);
 }
 
 //used by BackgroundProcesses() and Update() for spawning clouds and whisps
@@ -37,7 +37,7 @@ void SpawnHelper(sf::RenderWindow &window, std::vector<sf::Sprite> &v, sf::Textu
 		t = 0;
 	
 	//set sprite position to random
-	sprite->setPosition(window.getView().getCenter().x + WINDOW_SIZE.x/2, window.getView().getCenter().y - WINDOW_SIZE.y/2 + pV[p]);
+	sprite->setPosition(window.getView().getCenter().x + window.getSize().x/2, window.getView().getCenter().y - window.getSize().y/2 + pV[p]);
 	if(p < (pV.size() - 1))
 		p += 1;
 	else
@@ -162,14 +162,14 @@ void BackgroundProcesses::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 	{
 		//despawn clouds and whisps
 		for(int i = 0; i < m_clouds.size(); i++) //despawn clouds
-			if(m_clouds[i].getPosition().x + m_clouds[i].getGlobalBounds().width < window.getView().getCenter().x - WINDOW_SIZE.x/2 || //out of bounds left
-				m_clouds[i].getPosition().y + m_clouds[i].getGlobalBounds().height < window.getView().getCenter().y - WINDOW_SIZE.y/2 || //out of bounds top
-				m_clouds[i].getPosition().y > window.getView().getCenter().y + WINDOW_SIZE.y/2) //out of bounds bottom
+			if(m_clouds[i].getPosition().x + m_clouds[i].getGlobalBounds().width < window.getView().getCenter().x - window.getSize().x/2 || //out of bounds left
+				m_clouds[i].getPosition().y + m_clouds[i].getGlobalBounds().height < window.getView().getCenter().y - window.getSize().y/2 || //out of bounds top
+				m_clouds[i].getPosition().y > window.getView().getCenter().y + window.getSize().y/2) //out of bounds bottom
 				m_clouds.erase(m_clouds.begin() + i);
 		for(int i = 0; i < m_whisps.size(); i++) //despawn whisps
-			if(m_whisps[i].getPosition().x + m_whisps[i].getGlobalBounds().width < window.getView().getCenter().x - WINDOW_SIZE.x/2 ||
-				m_whisps[i].getPosition().y + m_whisps[i].getGlobalBounds().height < window.getView().getCenter().y - WINDOW_SIZE.y/2 ||
-				m_whisps[i].getPosition().y > window.getView().getCenter().y + WINDOW_SIZE.y/2)
+			if(m_whisps[i].getPosition().x + m_whisps[i].getGlobalBounds().width < window.getView().getCenter().x - window.getSize().x/2 ||
+				m_whisps[i].getPosition().y + m_whisps[i].getGlobalBounds().height < window.getView().getCenter().y - window.getSize().y/2 ||
+				m_whisps[i].getPosition().y > window.getView().getCenter().y + window.getSize().y/2)
 				m_whisps.erase(m_whisps.begin() + i);
 
 		//spawn clouds
