@@ -1,4 +1,4 @@
-# Game-of-Crates
+# Game of Crates
 
 ![Game of Crates](http://www.nicholas-swift.com/thumbs/Game%20of%20Crates/game-of-crates-thumb.png)
 ![Menu](http://www.nicholas-swift.com/thumbs/Game%20of%20Crates/menu-thumb.png)
