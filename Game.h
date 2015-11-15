@@ -14,10 +14,14 @@ public:
 	Game();
 	void run();
 
+	//void runClock(), run1(), run2(), run3(), run4(), run5();
+
 private:
 	void processEvents();
 	void update(sf::Time);
 	void render();
+
+	//void update1(sf::Time), update2(sf::Time), update3(sf::Time), update4(sf::Time);
 
 private:
 	sf::RenderWindow m_window;

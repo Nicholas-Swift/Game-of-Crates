@@ -11,7 +11,7 @@ private:
 
 	sf::Vector2f m_size;
 	sf::Sprite m_sprite;
-	sf::Texture m_texture;
+	sf::Texture m_texture1, m_texture2, m_texture3;
 
 	float m_top, m_bottom, m_left, m_right;
 	
@@ -28,6 +28,7 @@ public:
 public:
 	Platform(int left, int right, sf::Vector2f position);
 	void Update(); //only for dynamic movement
+	void UpdateTexture(int i);
 	void Move(sf::Time &deltaTime);
 	void Draw(sf::RenderWindow &window);
 };

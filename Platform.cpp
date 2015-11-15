@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <iostream>
 #include "Platform.h"
+#include "FileStream.h"
 
 float Platform::getTop()
 {
@@ -35,8 +36,11 @@ Platform::Platform(int left, int right, sf::Vector2f position)
 	m_rect.setFillColor(sf::Color::Red);
 	m_rect.setPosition(position);
 
-	m_texture.loadFromFile("Assets/Tilemap.png");
-	m_sprite.setTexture(m_texture);
+	m_texture1.loadFromFile("Assets/tilemapsand.png");
+	m_texture2.loadFromFile("Assets/tilemapforrest.png");
+	m_texture3.loadFromFile("Assets/tilemapsnow.png");
+
+	m_sprite.setTexture(m_texture1);
 	m_sprite.setTextureRect(sf::IntRect(0, 5*64, m_size.x*3, m_size.y));
 	m_sprite.setPosition(position);
 
@@ -61,6 +65,16 @@ void Platform::Update()
 	m_bottom = m_rect.getPosition().y + m_rect.getSize().y;
 	m_left = m_rect.getPosition().x;
 	m_right = m_rect.getPosition().x + m_rect.getSize().x;
+}
+
+void Platform::UpdateTexture(int i)
+{
+	if(i < 5)
+		m_sprite.setTexture(m_texture1);
+	else if(i < 10)
+		m_sprite.setTexture(m_texture2);
+	else
+		m_sprite.setTexture(m_texture3);
 }
 
 void Platform::Move(sf::Time &deltaTime)

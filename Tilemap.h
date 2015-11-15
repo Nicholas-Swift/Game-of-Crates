@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Platform.h"
 #include "Crate.h"
+#include "BackgroundProcesses.h"
 
 class Tilemap
 {
@@ -29,6 +30,16 @@ private:
 	sf::Sprite m_creditsSprite;
 	sf::Texture m_creditsTexture;
 
+	//background
+	sf::Texture m_menuBackground, m_sandBackground, m_forrestBackground, m_snowBackground;
+	sf::Sprite m_background;
+
+	//level display
+	sf::Texture m_levelDisplayTexture;
+	sf::Sprite m_levelDisplay;
+	float m_levelDisplayTimer;
+	bool m_levelDisplayBool;
+
 public:
 	int getLevelMap(int y, int x);
 	int getLevel();
@@ -46,11 +57,15 @@ public:
 
 private:
 	void LoadLevelZero(), LoadLevelOne(), LoadLevelTwo(), LoadLevelThree(), LoadLevelFour(), LoadLevelFive(), LoadLevelSix(), LoadLevelSeven(), LoadLevelEight(), LoadLevelNine(), LoadLevelTen(), LoadLevelEleven(), LoadLevelTwelve(), LoadLevelThirteen(), LoadLevelFourteen(), LoadLevelFifteen(), LoadLevelCredits();
+	void LevelDisplayUpdate(sf::Time deltaTime, sf::RenderWindow &window), LevelDisplayUpdate(int i);
 
 public:
 	Tilemap(sf::RenderWindow &window);
 	void Update(sf::Time &deltaTime, sf::RenderWindow &window);
+	void DrawBackground(sf::RenderWindow &window);
 	void Draw(sf::RenderWindow &window);
+	void Resize(sf::Vector2f size);
+	void ViewUpdate(sf::RenderWindow &window);
 };
 
 #endif

@@ -12,9 +12,6 @@ private:
 	int m_rctInt, m_rcInt, m_rcsInt, m_rwtInt, m_rwInt, m_rwsInt;  //r(andom), t(exture), c(loud), w(hisp), s(cale)
 	std::vector<int> m_rctRandom, m_rcRandom, m_rcsRandom, m_rwtRandom, m_rwRandom, m_rwsRandom;
 
-	sf::Texture m_backgroundTexture;
-	sf::Sprite m_background;
-
 	sf::Texture m_cloudsTexture;
 	std::vector<sf::Sprite> m_clouds;
 
@@ -31,9 +28,7 @@ public:
 public:
 	BackgroundProcesses();
 	void Update(sf::Time &deltaTime, sf::RenderWindow &window);
-	void ViewUpdate(sf::RenderWindow &window);
 	void Draw(sf::RenderWindow &window);
-	void Resize(sf::Vector2f size);
 };
 
 #endif

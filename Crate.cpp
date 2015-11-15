@@ -114,20 +114,13 @@ Crate::Crate()
 
 void Crate::Update(sf::RenderWindow &window, sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p)
 {
-	//don't update if you're out of scope!
-	/*if(m_bottom < m_window.getView().getCenter().y - m_window.getSize().y/2 || m_left <)*/
-
 	m_top = m_rect.getPosition().y;
 	m_bottom = m_rect.getPosition().y + m_rect.getSize().y;
 	m_left = m_rect.getPosition().x;
 	m_right = m_rect.getPosition().x + m_rect.getSize().x;
 
 	//if on tile
-	if(m_bottom / 64 < 0 || m_right < 0)
-		m_onGround = false;
-	else if(int(m_bottom) % 64 != 0)
-		m_onGround = false;
-	else if( (map[int(m_bottom)/64][int(m_left)/64] >= 100 && map[int(m_bottom)/64][int(m_left)/64] < 200) || (map[int(m_bottom)/64][int(m_left)/64] >= 500 && map[int(m_bottom)/64][int(m_left)/64] < 600) || (map[int(m_bottom)/64][int(m_right)/64] >= 100 && map[int(m_bottom)/64][int(m_right)/64] < 200) || (map[int(m_bottom)/64][int(m_right)/64] >= 500 && map[int(m_bottom)/64][int(m_right)/64] < 600) )
+	if( (map[int(m_bottom)/64][int(m_left)/64] >= 100 && map[int(m_bottom)/64][int(m_left)/64] < 200) || (map[int(m_bottom)/64][int(m_left)/64] >= 500 && map[int(m_bottom)/64][int(m_left)/64] < 600) || (map[int(m_bottom)/64][int(m_right)/64] >= 100 && map[int(m_bottom)/64][int(m_right)/64] < 200) || (map[int(m_bottom)/64][int(m_right)/64] >= 500 && map[int(m_bottom)/64][int(m_right)/64] < 600) )
 		m_onGround = true;
 	else
 		m_onGround = false;

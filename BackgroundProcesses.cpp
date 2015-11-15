@@ -114,10 +114,6 @@ BackgroundProcesses::BackgroundProcesses()
 	int rws[20] = {8, 10, 9, 11, 12, 9, 8, 11, 9, 10, 8, 11, 10, 12, 8, 9, 10, 9, 11, 12}; //random whisp scale
 	m_rwsRandom.insert(m_rwsRandom.end(), rws, rws+20);
 
-	//load the background
-	m_backgroundTexture.loadFromFile("Assets/background.png");
-	m_background.setPosition(0, 0); m_background.setTexture(m_backgroundTexture); m_background.setScale(WINDOW_SIZE.x / m_backgroundTexture.getSize().x, WINDOW_SIZE.y / m_backgroundTexture.getSize().y);
-
 	//scatter clouds around current level
 	m_cloudsTexture.loadFromFile("Assets/cloudTexture.png");
 	m_clouds.clear();
@@ -190,22 +186,10 @@ void BackgroundProcesses::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 		m_whisps[i].move(-m_whispMoveSpeed * 0.4 * m_whisps[i].getScale().x * deltaTime.asMilliseconds(), 0);
 }
 
-void BackgroundProcesses::ViewUpdate(sf::RenderWindow &window)
-{
-	m_background.setPosition(window.getView().getCenter().x - window.getSize().x/2, window.getView().getCenter().y - window.getSize().y/2);
-}
-
 void BackgroundProcesses::Draw(sf::RenderWindow &window)
 {
-	window.draw(m_background);
-
 	for(int i = 0; i < m_clouds.size(); i++)
 		window.draw(m_clouds[i]);
 	for(int i = 0; i < m_whisps.size(); i++)
 		window.draw(m_whisps[i]);
-}
-
-void BackgroundProcesses::Resize(sf::Vector2f size)
-{
-	m_background.setScale(size.x / WINDOW_SIZE.x, size.y / WINDOW_SIZE.y);
 }

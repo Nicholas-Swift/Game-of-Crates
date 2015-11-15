@@ -4,6 +4,8 @@
 #include "Player.h"
 #include "Tilemap.h"
 
+#include "FileStream.h"
+
 float Player::getTop()
 {
 	return m_top;
@@ -61,12 +63,15 @@ Player::Player()
 	m_rect.setFillColor(sf::Color::Red);
 
 	m_texture.loadFromFile("Assets/Player.png");
+	m_texture.setSmooth(true);
+
 	m_sprite.setTexture(m_texture);
 	m_sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
 	frameCounter = 0; switchFrame = 100; frameSpeed = 500;
 	source = sf::Vector2i(0, 0);
 
 	m_grassBuffer.loadFromFile("Assets/grass.flac");
+
 	m_walking.setBuffer(m_grassBuffer);
 	soundInt = 0;
 	setSoundLevel(0);
@@ -100,7 +105,7 @@ void Player::HandleEvents(sf::Keyboard::Key key, bool isPressed)
 		m_isMovingLeft = isPressed;
 }
 
-void Player::Update(Tilemap &t, sf::RenderWindow &window)
+void Player::Update(Tilemap &t, sf::RenderWindow &window, BackgroundProcesses &b)
 {
 	m_top = m_rect.getPosition().y;
 	m_bottom = m_rect.getPosition().y + m_rect.getSize().y;
@@ -139,7 +144,8 @@ void Player::Update(Tilemap &t, sf::RenderWindow &window)
 		else if(int(m_bottom) <= t.getPlatformTop(i))
 			m_onGround = true;
 	}
-	
+
+	int whichCrate = -1;
 	for(int i = 0; i < t.getCrateSize(); i++)
 	{
 		//downward collision on crate
@@ -149,14 +155,31 @@ void Player::Update(Tilemap &t, sf::RenderWindow &window)
 		{
 			m_onGround = true;
 			m_onCrate = true;
+			whichCrate = i;
+			break;
 		}
 		else
 		{
 			m_onCrate = false;
 		}
+	}
 
-		//moving crates left and right
-		if(!m_onCrate)
+	for(int i = 0; i < t.getCrateSize(); i++)
+	{
+		//downward collision on crate
+		/*if(m_right < t.getCrateLeft(i) || m_left > t.getCrateRight(i) || m_top > t.getCrateBottom(i) || m_bottom < t.getCrateTop(i))
+		{}
+		else if(m_bottom >= t.getCrateTop(i) && m_bottom - 2 <= t.getCrateTop(i) && m_right - 2 > t.getCrateLeft(i) && m_left + 2 < t.getCrateRight(i))
+		{
+			m_onGround = true;
+			m_onCrate = true;
+		}
+		else
+		{
+			m_onCrate = false;
+		} */
+
+		if(i != whichCrate)
 		{
 			//not colliding with crate
 			if(m_right < t.getCrateLeft(i) || m_left > t.getCrateRight(i) || m_top > t.getCrateBottom(i) || m_bottom < t.getCrateTop(i))
@@ -284,13 +307,13 @@ void Player::Move(sf::Time &deltaTime, Tilemap &t)
 			m_movement.x += t.getPlatformMovement(i).x;
 	}
 	//move if on a crate (movement will be non-zero if crate is on a platform so...)
-	for(int i = 0; i < t.getCrateSize(); i++)
+	/*for(int i = 0; i < t.getCrateSize(); i++)
 	{
 		if(m_right < t.getCrateLeft(i) || m_left > t.getCrateRight(i) || m_top > t.getCrateBottom(i) || m_bottom < t.getCrateTop(i))
 			{}
 		else if(int(m_bottom) <= t.getCrateTop(i))
 			m_movement.x += t.getCrateMovement(i).x;
-	}
+	}*/
 
 	//the actual move part
 	m_rect.move(m_movement.x, m_movement.y);
@@ -312,15 +335,15 @@ void Player::Move(sf::Time &deltaTime, Tilemap &t)
 			m_movement.x -= t.getPlatformMovement(i).x;
 	}
 	//change the movement after actually moving the crate so it doesn't mess up earlier processes
-	for(int i = 0; i < t.getCrateSize(); i++)
+	/*for(int i = 0; i < t.getCrateSize(); i++)
 	{
 		if(m_right < t.getCrateLeft(i) || m_left > t.getCrateRight(i) || m_top > t.getCrateBottom(i) || m_bottom < t.getCrateTop(i))
 			{}
 		else if(int(m_bottom) <= t.getCrateTop(i))
 			m_movement.x -= t.getCrateMovement(i).x;
-	}
+	}*/
 
-	/* if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) //FOR GOD MODE!!
+	/*if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) //FOR GOD MODE!!
 		m_movement.y = -0.25;
 	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 		m_movement.y = 0.25;
@@ -357,7 +380,8 @@ void Player::Animate(sf::Time &deltaTime)
 	}
 	else if(!m_onGround)
 	{
-		source.y = 3;
+		//source.y = 3; Take out the looking back while falling: Quality of life change for CHRIS ZITNIK - WHAT A GUY
+		source.y = 0;
 		source.x = 1;
 	}
 

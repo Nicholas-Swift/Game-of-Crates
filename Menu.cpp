@@ -349,6 +349,10 @@ void Menu::PopulateOne() //Game Menu
 		sprite->setTextureRect(sf::IntRect(0, 192 + 64*i, 200, 64));
 		sprite->setPosition(rect->getPosition());
 		m_buttonsSprite.push_back(*sprite);
+
+		//BUG FIX: play is a little bugged, so gotta make it a little lower
+		if(i == 0)
+			sprite->setTextureRect(sf::IntRect(0, i*64+2, 181, 64-2));
 	}
 }
 
@@ -383,6 +387,10 @@ void Menu::UpdateOne()
 				{}
 			else
 				m_buttonsSprite[i].setTextureRect(sf::IntRect(0, 192 + i*64, 200, 64));
+
+			//BUG FIX: play is a little bugged, so gotta make it a little lower
+			if(i == 0)
+				m_buttonsSprite[0].setTextureRect(sf::IntRect(0, 192 + i*64+1, 200, 64-1));
 		}
 		else
 		{
@@ -391,6 +399,10 @@ void Menu::UpdateOne()
 				{}
 			else
 				m_buttonsSprite[i].setTextureRect(sf::IntRect(200, 192 + i*64, 200, 64));
+
+			//BUG FIX: play is a little bugged, so gotta make it a little lower
+			if(i == 0)
+				m_buttonsSprite[0].setTextureRect(sf::IntRect(200, 192 + i*64+1, 200, 64-1));
 		}
 	}
 }
@@ -733,7 +745,6 @@ void Menu::Load()
 	}
 	props.close();
 
-	
 	if(lvl > 14)
 		lvl = 14;
 
@@ -768,8 +779,8 @@ Menu::Menu()
 
 	Load();
 
-	m_titleTexture.loadFromFile("Assets/titleTexture.png");
-	m_buttonTexture.loadFromFile("Assets/buttonTexture.png");
+	m_titleTexture.loadFromFile("Assets/titleTexture.png"); m_titleTexture.setSmooth(true);
+	m_buttonTexture.loadFromFile("Assets/buttonTexture.png"); m_buttonTexture.setSmooth(true);
 
 	m_title.setTexture(m_titleTexture);
 

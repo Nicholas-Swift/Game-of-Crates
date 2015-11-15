@@ -4,6 +4,7 @@
 #include "Tilemap.h"
 #include "Platform.h"
 #include "Crate.h"
+#include "BackgroundProcesses.h"
 
 const sf::Vector2f WINDOW_SIZE(960, 640);
 
@@ -96,31 +97,22 @@ void Tilemap::LoadLevelOne()
 	}
 
 	//populate map with trees, rocks, shrooms, whatever
-	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(2*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(4*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(16*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
+	tree->setPosition(1*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-	rockshroom->setPosition(0*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(1*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(14*64 - 12, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(3*64 + 12, 7*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(14*64 + 12, 7*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
@@ -187,31 +179,28 @@ void Tilemap::LoadLevelTwo()
 	m_crates.push_back(*crate);
 
 	//populate map with trees, rocks, shrooms, whatever
-	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(2*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
 	tree->setPosition(13*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
 	tree->setPosition(7*64 + 5, 14*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-	rockshroom->setPosition(0*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(2*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(3*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-	rockshroom->setPosition(13*64 - 12, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(13*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(3*64 + 12, 7*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(15*64 + 12, 7*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
@@ -295,34 +284,31 @@ void Tilemap::LoadLevelThree()
 	m_crates.push_back(*crate);
 
 	//populate map with trees, rocks, shrooms, whatever
-	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
 	tree->setPosition(2*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(4*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
+	tree->setPosition(20*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(21*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(8*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
+	tree->setPosition(6*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(1*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(1*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(22*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(3*64 + 12, 13*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(12*64 + 12, 13*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
@@ -370,37 +356,31 @@ void Tilemap::LoadLevelFour()
 	m_crates.push_back(*crate);
 
 	//populate map with trees, rocks, shrooms, whatever
-	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(3*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
 	tree->setPosition(0*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(9*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(6*64, 17*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x, m_treesTexture.getSize().y));
+	tree->setPosition(4*64, 17*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(1*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(3*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(4*64 - 34, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(6*64, 8*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(1*64, 17*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*3/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*3/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(7*64, 17*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
@@ -460,22 +440,10 @@ void Tilemap::LoadLevelFive()
 	m_crates.push_back(*crate);
 
 	//populate map with trees, rocks, shrooms, whatever
-	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(3*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(1*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(2*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(13*64, 3*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 5*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(3*64, 5*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
@@ -657,25 +625,25 @@ void Tilemap::LoadLevelSeven()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(0*64 - 14, 3*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(2*64 - 12, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(18*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(9*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 3*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(0*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(1*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(18*64 + 6, 6*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
@@ -771,16 +739,16 @@ void Tilemap::LoadLevelEight()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(1*64, 3*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(18*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(2*64, 3*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(18*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(3*64, 14*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 }
 
@@ -885,28 +853,28 @@ void Tilemap::LoadLevelNine()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(1*64, 15*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(16*64 - 13, 15*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(15*64, 15*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(18*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(8*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(14*64, 15*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(16*64, 15*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(18*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(3*64, 15*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 }
 
@@ -968,31 +936,31 @@ void Tilemap::LoadLevelTen()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(3*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(3*64 - 31, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(6*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(8*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(1*64, 9*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(21*64, 14*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(2*64, 2*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(3*64 - 18, 2*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(2*64 + 12, 9*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(3*64 + 12, 9*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
@@ -1082,26 +1050,35 @@ void Tilemap::LoadLevelEleven()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(0*64, 4*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(5*64+10, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(20*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(9*64, 10*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(17*64, 17*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(5*64, 10*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-	rockshroom->setPosition(20*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
-
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(21*64 - 16, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
-	bush1->setPosition(6*64 + 12, 10*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+	bush1->setPosition(6*64, 5*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(7*64, 5*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*3/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(14*64, 5*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*3/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(7*64, 17*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
 const int level12[30][30] = {
@@ -1208,26 +1185,32 @@ void Tilemap::LoadLevelTwelve()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(2*64, 17*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(20*64, 18*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(17*64, 18*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(24*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(27*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(23*64 + 30, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(11*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(15*64, 16*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(22*64, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(11*64 - 16, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*2/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(14*64, 16*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
+
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x*3/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setPosition(4*64, 4*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 }
 
 const int level13[30][30] = {
@@ -1289,19 +1272,19 @@ void Tilemap::LoadLevelThirteen()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(0*64, 5*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(5*64, 12*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(20*64, 16*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(5*64, 12*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
-	rockshroom->setPosition(23*64, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setPosition(23*64 + 5, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(24*64 - 16, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
@@ -1403,43 +1386,40 @@ void Tilemap::LoadLevelFourteen()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(2*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(3*64, 8*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(11*64, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(10*64 + 30, 6*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(5*64, 1*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
-
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(5*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(6*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(19*64, 5*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
-	bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
+	bush1->setTextureRect(sf::IntRect(m_bushesTexture.getSize().x/4, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
 	bush1->setPosition(22*64, 1*64 - m_bushesTexture.getSize().y); m_bushes.push_back(*bush1);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(18*64, 5*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(9*64, 2*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(4*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(1*64, 8*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*1/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*1/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(10*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(23*64, 13*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 }
 
@@ -1547,25 +1527,25 @@ void Tilemap::LoadLevelFifteen()
 	sf::Sprite *tree = new sf::Sprite(); tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(5*64, 18*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
-	tree->setPosition(11*64, 14*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setPosition(10*64, 14*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(m_treesTexture.getSize().x/2, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(22*64, 13*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
-	tree->setTexture(m_treesTexture); tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
+	tree->setTextureRect(sf::IntRect(0, 0, m_treesTexture.getSize().x/2, m_treesTexture.getSize().y));
 	tree->setPosition(16*64, 7*64 - m_treesTexture.getSize().y); m_trees.push_back(*tree);
 
 	sf::Sprite *rockshroom = new sf::Sprite; rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(15*64, 7*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(27*64, 9*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(0, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(22*64 - 16, 16*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
-	rockshroom->setTexture(m_rockshroomsTexture); rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
+	rockshroom->setTextureRect(sf::IntRect(m_rockshroomsTexture.getSize().x*2/3, 0, m_rockshroomsTexture.getSize().x/3, m_rockshroomsTexture.getSize().y));
 	rockshroom->setPosition(10*64 - 16, 18*64 - m_rockshroomsTexture.getSize().y); m_rockshrooms.push_back(*rockshroom);
 
 	sf::Sprite *bush1 = new sf::Sprite; bush1->setTexture(m_bushesTexture); bush1->setTextureRect(sf::IntRect(0, 0, m_bushesTexture.getSize().x/4, m_bushesTexture.getSize().y));
@@ -1698,24 +1678,80 @@ void Tilemap::CrateCrateCollision(sf::RenderWindow &window)
 {
 	for(int i = 0; i < getCrateSize(); i++)
 	{
-		for(int j = 0; j < getCrateSize(); j++)
+		for(int j = i+1; j < getCrateSize(); j++)
 		{
-			/*if(m_crates[i].getBottom() < window.getView().getCenter().y - window.getSize().y/2 || 
-				m_crates[i].getTop() > window.getView().getCenter().y + window.getSize().y/2 ||
-				m_crates[i].getRight() < window.getView().getCenter().x - window.getSize().x/2 ||
-				m_crates[i].getLeft() > window.getView().getCenter().x + window.getSize().x/2)
-			{
-				m_crates[i].setOnCrate();
-				break;
-			}
-			else
-			{*/
-				m_crates[i].CrateCollide(getCrateTop(j), getCrateBottom(j), getCrateLeft(j), getCrateRight(j));
-				if(m_crates[i].getOnCrate() == true)
-					break;
-			//}
+			m_crates[i].CrateCollide(getCrateTop(j), getCrateBottom(j), getCrateLeft(j), getCrateRight(j));
+			//if(m_crates[i].getOnCrate() == true)
+				//break;
 		}
 	}
+}
+
+void Tilemap::LevelDisplayUpdate(sf::Time deltaTime, sf::RenderWindow &window)
+{
+	if(m_levelDisplayTimer < 5)
+	{
+		m_levelDisplayBool = true;
+		m_levelDisplayTimer += deltaTime.asSeconds();
+
+		//to keep with the screen
+		m_levelDisplay.setPosition(window.getView().getCenter().x - m_levelDisplay.getGlobalBounds().width/2, window.getView().getCenter().y - window.getSize().y/2 + 100);
+
+		//for smooth animation
+		if(m_levelDisplayTimer < 1)
+			m_levelDisplay.setColor(sf::Color(m_levelDisplay.getColor().r, m_levelDisplay.getColor().g, m_levelDisplay.getColor().b, 255*m_levelDisplayTimer));
+		else if(m_levelDisplayTimer > 4)
+			m_levelDisplay.setColor(sf::Color(m_levelDisplay.getColor().r, m_levelDisplay.getColor().g, m_levelDisplay.getColor().b, 255*(-(m_levelDisplayTimer-5)) ));
+	}
+	else
+		m_levelDisplayBool = false;
+
+}
+
+void Tilemap::LevelDisplayUpdate(int i) //for updating texture rect!
+{
+	if(i < 5)
+		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*i/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5));
+	else if(i < 10)
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*(i-5)/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5));
+	else
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*(i-10)/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5));
+
+	/*switch(i)
+	{
+	case 0:
+		m_levelDisplay.setTextureRect(sf::IntRect(0, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 1:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 2:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 3:
+		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 4:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 5:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 6:
+		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*2/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 7:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*2/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 8:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*2/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 9:
+		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*3/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 10:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*3/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 11:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*3/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 12:
+		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*4/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 13:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*4/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	case 14:
+		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*4/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
+	default:
+		m_levelDisplay.setTextureRect(sf::IntRect(0, 0, 0, 0)); break;
+	}*/
 }
 
 void Tilemap::setMap(sf::RenderWindow &window)
@@ -1727,6 +1763,21 @@ void Tilemap::setMap(sf::RenderWindow &window)
 
 void Tilemap::setMap(int i, sf::RenderWindow &window)
 {
+	//update m_levelDisplay texture
+	LevelDisplayUpdate(i);
+
+	//changing background
+	if(i == -1)
+		m_background.setTexture(m_menuBackground, true);
+	else if(i < 5)
+		m_background.setTexture(m_sandBackground, true);
+	else if(i < 10)
+		m_background.setTexture(m_forrestBackground, true);
+	else if(i < 15)
+		m_background.setTexture(m_snowBackground, true);
+	
+	Resize(sf::Vector2f(window.getSize().x, window.getSize().y));
+
 	if(window.getSize().x > 10)
 	{
 		m_loadingScreen.setScale(window.getSize().x / m_loadingScreen.getGlobalBounds().width, window.getSize().y / m_loadingScreen.getGlobalBounds().height); /*2000 is width and height of the loading screen texture*/
@@ -1741,7 +1792,7 @@ void Tilemap::setMap(int i, sf::RenderWindow &window)
 	}
 
 	window.clear();
-	window.draw(m_loadingScreen);
+	window.draw(m_background);
 	window.draw(m_loadingText);
 	window.display();
 
@@ -1753,6 +1804,29 @@ void Tilemap::setMap(int i, sf::RenderWindow &window)
 	m_crates.clear();
 	m_rockshrooms.clear();
 	m_trees.clear();
+
+	//changing textures and stuff
+	if(m_level < 5)
+	{
+		m_texture.loadFromFile("Assets/tilemapsand.png");
+		m_treesTexture.loadFromFile("Assets/treessand.png");
+		m_bushesTexture.loadFromFile("Assets/bushessand.png");
+		m_rockshroomsTexture.loadFromFile("Assets/rockshroomssand.png");
+	}
+	else if(m_level < 10)
+	{
+		m_texture.loadFromFile("Assets/tilemapforrest.png");
+		m_treesTexture.loadFromFile("Assets/treesforrest.png");
+		m_bushesTexture.loadFromFile("Assets/bushesforrest.png");
+		m_rockshroomsTexture.loadFromFile("Assets/rockshroomsforrest.png");
+	}
+	else
+	{
+		m_texture.loadFromFile("Assets/tilemapsnow.png");
+		m_treesTexture.loadFromFile("Assets/treessnow.png");
+		m_bushesTexture.loadFromFile("Assets/bushessnow.png");
+		m_rockshroomsTexture.loadFromFile("Assets/rockshroomssnow.png");
+	}
 
 	switch(i)
 	{
@@ -1808,18 +1882,28 @@ void Tilemap::setMap(int i, sf::RenderWindow &window)
 		LoadLevelCredits();
 		break;
 	}
+
+	//level display
+	m_levelDisplayTimer = 0;
+
+	//for platform textures
+	for(int i = 0; i < m_platforms.size(); i++)
+	{
+		m_platforms[i].UpdateTexture(m_level);
+	}
 }
 
 Tilemap::Tilemap(sf::RenderWindow &window)
 {
 	m_size = sf::Vector2f(64, 64);
 
-	m_texture.loadFromFile("Assets/tileMap.png");
+	m_texture.loadFromFile("Assets/tilemapsand.png");
 	m_sprite.setTexture(m_texture);
 
-	m_treesTexture.loadFromFile("Assets/trees.png");
-	m_rockshroomsTexture.loadFromFile("Assets/rockshrooms.png");
-	m_bushesTexture.loadFromFile("Assets/bushes.png");
+
+	m_treesTexture.loadFromFile("Assets/treessand.png");
+	m_rockshroomsTexture.loadFromFile("Assets/rockshroomssand.png");
+	m_bushesTexture.loadFromFile("Assets/bushessand.png");
 
 	m_level = 0; //set map to 0
 	setMap(m_level, window);
@@ -1835,26 +1919,42 @@ Tilemap::Tilemap(sf::RenderWindow &window)
 	m_creditsTexture.loadFromFile("Assets/credits.png");
 	m_creditsSprite.setTexture(m_creditsTexture);
 	m_creditsSprite.setPosition(window.getView().getCenter().x - m_creditsSprite.getGlobalBounds().width/2, window.getView().getCenter().y + window.getSize().y/2);
+
+	//background
+	m_menuBackground.loadFromFile("Assets/menuBackground.png");
+	m_sandBackground.loadFromFile("Assets/sandBackground.png");
+	m_forrestBackground.loadFromFile("Assets/forrestBackground.png");
+	m_snowBackground.loadFromFile("Assets/snowBackground.png");
+
+	m_background.setPosition(0, 0); m_background.setTexture(m_menuBackground); m_background.setScale(WINDOW_SIZE.x / 2000, WINDOW_SIZE.y / 2000);
+
+	//level display
+	m_levelDisplayTexture.loadFromFile("Assets/levelDisplay.png");
+	m_levelDisplay.setTexture(m_levelDisplayTexture);
+	m_levelDisplay.setTextureRect(sf::IntRect(0, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5));
+	m_levelDisplayTimer = 0;
 }
 
 void Tilemap::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 {
+	//update platforms
 	for(int i = 0; i < m_platforms.size(); i++)
 	{
 		m_platforms[i].Update();
 		m_platforms[i].Move(deltaTime);
 	}
 
+	//update crate stuff
 	deleted:
 	for(int i = 0; i < m_crates.size(); i++)
 	{
-		m_crates[i].Update(window, deltaTime, m_levelMap, m_platforms);
-		if(m_crates[i].getBottom() > 40*64)
+		m_crates[i].Update(window, deltaTime, m_levelMap, m_platforms); //update - GOOD
+		if(m_crates[i].getBottom() > 40*64) //delete - It's alright, doesn't really matter since crates aren't being deleted a ton
 		{
 			m_crates.erase(m_crates.begin() + i);
 			goto deleted;
 		}
-		CrateCrateCollision(window);
+		CrateCrateCollision(window); //crates colliding together - BAD AS SHIT
 	}
 
 	//credits
@@ -1863,6 +1963,14 @@ void Tilemap::Update(sf::Time &deltaTime, sf::RenderWindow &window)
 		m_creditsSprite.setPosition(window.getView().getCenter().x - m_creditsSprite.getGlobalBounds().width/2, m_creditsSprite.getGlobalBounds().top);
 		m_creditsSprite.move(0, -0.022*deltaTime.asMilliseconds());
 	}
+
+	//level display
+	LevelDisplayUpdate(deltaTime, window);
+}
+
+void Tilemap::DrawBackground(sf::RenderWindow &window)
+{
+	window.draw(m_background);
 }
 
 void Tilemap::Draw(sf::RenderWindow &window)
@@ -1939,7 +2047,21 @@ void Tilemap::Draw(sf::RenderWindow &window)
 		}
 	}
 
+	//level display
+	if(m_levelDisplayBool)
+		window.draw(m_levelDisplay);
+
 	//credits
 	if(m_level == 15)
 		window.draw(m_creditsSprite);
+}
+
+void Tilemap::Resize(sf::Vector2f size)
+{
+	m_background.setScale(size.x / 2000, size.y / 2000);
+}
+
+void Tilemap::ViewUpdate(sf::RenderWindow &window)
+{
+	m_background.setPosition(window.getView().getCenter().x - window.getSize().x/2, window.getView().getCenter().y - window.getSize().y/2);
 }
