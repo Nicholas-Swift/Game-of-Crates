@@ -5,6 +5,7 @@
 #include "Platform.h"
 #include "Crate.h"
 #include "BackgroundProcesses.h"
+#include <vector>
 
 const sf::Vector2f WINDOW_SIZE(960, 640);
 
@@ -1676,13 +1677,24 @@ sf::Vector2f Tilemap::getCrateMovement(int i)
 
 void Tilemap::CrateCrateCollision(sf::RenderWindow &window)
 {
+	std::vector<int> vec;
+	bool skip = false;
 	for(int i = 0; i < getCrateSize(); i++)
 	{
-		for(int j = i+1; j < getCrateSize(); j++)
+		for(int c = 0; c < vec.size(); c++)
+			if(vec[c] == i)
+				skip = true;
+		if(!skip)
 		{
-			m_crates[i].CrateCollide(getCrateTop(j), getCrateBottom(j), getCrateLeft(j), getCrateRight(j));
-			//if(m_crates[i].getOnCrate() == true)
-				//break;
+			for(int j = i+1; j < getCrateSize(); j++)
+			{
+				m_crates[i].CrateCollide(getCrateTop(j), getCrateBottom(j), getCrateLeft(j), getCrateRight(j));
+				m_crates[j].CrateCollide(getCrateTop(i), getCrateBottom(i), getCrateLeft(i), getCrateRight(i));
+				if(m_crates[j].getOnCrate() == true)
+					vec.push_back(j);
+				if(m_crates[i].getOnCrate() == true)
+					break;
+			}
 		}
 	}
 }
@@ -1716,42 +1728,6 @@ void Tilemap::LevelDisplayUpdate(int i) //for updating texture rect!
 		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*(i-5)/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5));
 	else
 		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*(i-10)/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5));
-
-	/*switch(i)
-	{
-	case 0:
-		m_levelDisplay.setTextureRect(sf::IntRect(0, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 1:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 2:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, 0, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 3:
-		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 4:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 5:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 6:
-		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*2/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 7:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*2/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 8:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*2/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 9:
-		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*3/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 10:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*3/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 11:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*3/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 12:
-		m_levelDisplay.setTextureRect(sf::IntRect(0, m_levelDisplayTexture.getSize().y*4/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 13:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y*4/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	case 14:
-		m_levelDisplay.setTextureRect(sf::IntRect(m_levelDisplayTexture.getSize().x*2/3, m_levelDisplayTexture.getSize().y*4/5, m_levelDisplayTexture.getSize().x/3, m_levelDisplayTexture.getSize().y/5)); break;
-	default:
-		m_levelDisplay.setTextureRect(sf::IntRect(0, 0, 0, 0)); break;
-	}*/
 }
 
 void Tilemap::setMap(sf::RenderWindow &window)
