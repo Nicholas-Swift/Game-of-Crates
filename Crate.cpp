@@ -38,6 +38,16 @@ void Crate::setOnCrate()
 	m_onCrate = true;
 }
 
+bool Crate::getBelowCrate()
+{
+	return m_belowCrate;
+}
+
+void Crate::setBelowCrate(bool b)
+{
+	m_belowCrate = b;
+}
+
 sf::Vector2f Crate::GetSize()
 {
 	return m_rect.getSize();
@@ -72,14 +82,14 @@ void Crate::CrateCollide(float top, float bottom, float left, float right)
 {
 	m_onCrate = false;
 
-	if(m_top == top && m_bottom == bottom && m_left == left && m_right == right) //same crate
-	{}
-	else if(m_right < left || m_left > right || m_top > bottom || m_bottom < top) //not touching
-	{}
+	if(m_top == top && m_bottom == bottom && m_left == left && m_right == right) //same crate, don't do anything
+		{}
+	else if(m_right < left || m_left > right || m_top > bottom || m_bottom < top) //not touching, don't do anything
+		{}
 	else if(m_bottom >= top && m_bottom - 2 <= top) //above crate
 		m_onCrate = true;
 	else if(bottom >= m_top && bottom - 2 <= m_top) //below crate
-	{}
+		m_belowCrate = true; //had something set here before, now it's just useless as currently not using m_belowCrate.
 	else if(m_right >= left && m_left < left) //touching left
 		m_onLeft = true;
 	else if(m_left <= right && m_left > left) //touching right
@@ -114,6 +124,7 @@ Crate::Crate()
 
 void Crate::Update(sf::RenderWindow &window, sf::Time &deltaTime, int map[50][50], std::vector<Platform> &p)
 {
+	//update it so m_top and whatever is at the crate position.
 	m_top = m_rect.getPosition().y;
 	m_bottom = m_rect.getPosition().y + m_rect.getSize().y;
 	m_left = m_rect.getPosition().x;
@@ -177,6 +188,7 @@ void Crate::Update(sf::RenderWindow &window, sf::Time &deltaTime, int map[50][50
 			m_movement.x = 0;
 	}
 
+	//if it's on a crate, it's on the ground so doesn't fall
 	if(m_onCrate == true)
 		m_onGround = true;
 
