@@ -8,6 +8,8 @@ const sf::Vector2f WINDOW_SIZE(960, 640);
 Game::Game() : m_tilemap(m_window)
 {
 	m_window.create(sf::VideoMode(WINDOW_SIZE.x, WINDOW_SIZE.y), "Game of Crates"/*, sf::Style::None*/);
+	sf::Image icon; icon.loadFromFile("Assets/icon.png");
+	m_window.setIcon(16, 16, icon.getPixelsPtr());
 
 	//Update view
 	m_view.setCenter( (m_player.getLeft() + m_player.getRight()) / 2, m_player.getBottom() );

@@ -17,14 +17,14 @@ private:
 	sf::Vector2f m_movement;
 	float m_gravity;
 
-	bool m_onGround, m_onCrate, m_onLeft, m_onRight;
+	bool m_onGround, m_onCrate, m_belowCrate, m_onLeft, m_onRight;
 
 public:
 	void SetPosition(sf::Vector2f pos);
 	sf::Vector2f GetSize(), getMovement();
 	float getTop(), getBottom(), getLeft(), getRight();
-	bool getOnLeft(), getOnRight(), getOnCrate();
-	void setOnCrate();
+	bool getOnLeft(), getOnRight(), getOnCrate(), getBelowCrate();
+	void setOnCrate(), setBelowCrate(bool b);
 	void CrateCollide(float top, float bottom, float left, float right);
 
 public:

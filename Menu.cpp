@@ -460,6 +460,9 @@ void Menu::PopulateTwo()
 		rect->setFillColor(sf::Color::Red);
 		rect->setSize(sf::Vector2f(200, 48));
 		rect->setPosition(m_window->getView().getCenter().x - rect->getSize().x/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 115*i + 175);
+				//quick fix because contract was taken out
+				if(i == 3)
+					rect->setPosition(m_window->getView().getCenter().x - rect->getSize().x/2, m_window->getView().getCenter().y - m_window->getSize().y/2 + 115*(i-1) + 175);
 		m_buttonsRect.push_back(*rect);
 
 		//sprite
@@ -471,7 +474,7 @@ void Menu::PopulateTwo()
 	}
 
 	//set up movers
-	for(int i = 0; i < 3; i++)
+	for(int i = 0; i < 2; i++)
 	{
 		//rect
 		sf::RectangleShape *rect = new sf::RectangleShape;
